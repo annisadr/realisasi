@@ -306,7 +306,7 @@
 
   <script type="text/javascript">
     $(document).ready(function(){
-      $('#datatable').DataTables();
+      $('#datatable').DataTable();
     });
   </script>
 

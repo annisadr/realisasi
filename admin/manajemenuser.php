@@ -24,7 +24,7 @@
             </div>
         </form> -->
 
-        <table class="table table-striped table-hover table-responsive" id="datatable">
+        <table class="table table-striped table-hover table-responsive" id="datatable" style="padding-left: 10%;">
             <thead>
                 <tr style="font-size: 10px; text-align: center; background-color: #d9d9d9; border-color: black;">
                     <th style="text-align: center;">NO</th>
@@ -103,4 +103,7 @@
         }
         }
 </script>
+
+
+</body>
    
