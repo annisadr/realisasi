@@ -40,10 +40,7 @@
         <input type="text" name="username" placeholder="Username" required="required" class="input-txt" />
           <input type="password" name="password" placeholder="Password" required="required" class="input-txt" />
           <div class="login-footer">
-             <a href="#" class="lnk">
-              <span class="icon icon--min">ಠ╭╮ಠ</span> 
-              I've forgotten something
-            </a>
+             
             <button type="submit" role="button" name="login" class="btn btn--right" value="Login">Sign in  </button>
     
           </div>

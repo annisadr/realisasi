@@ -1,7 +1,7 @@
 <?php
     include "../config/koneksi.php";
 ?>
-<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../jquery-3.2.1.min.js"></script>
 
 <div class="container">
 <div class="row">
@@ -24,14 +24,16 @@
     </ol>
 
     <div class="form-group">
-      <label class="control-label col-sm-2" for="nama">Nama:</label>
+      <label class="control-label col-sm-2" for="nama">Nama</label>
+      <label class="control-label col-sm-1">:</label>
       <div class="col-sm-5">
         <input type="text" class="form-control" id="nama" name="nama" style="text-transform: capitalize;" placeholder="Nama Panjang" required>
       </div>
     </div>
 
     <div class="form-group">
-      <label class="control-label col-sm-2" for="alamat">Alamat:</label>
+      <label class="control-label col-sm-2" for="alamat">Alamat</label>
+      <label class="control-label col-sm-1">:</label>
       <div class="col-sm-9">          
         <textarea class="form-control" id="alamat" rows="2" name="alamat" placeholder="Alamat" required></textarea>
       </div>
@@ -39,6 +41,7 @@
 
     <div class="form-group">
       <label class="control-label col-sm-2" for="alamat"></label>
+      <label class="control-label col-sm-1"></label>
       <div class="col-sm-1">
         <input type="text" class="form-control" id="rt" name="rt" placeholder="RT">
       </div>
@@ -48,42 +51,48 @@
     </div>
 
     <div class="form-group">
-      <label class="control-label col-sm-2" for="kelurahan">Kelurahan:</label>
+      <label class="control-label col-sm-2" for="kelurahan">Kelurahan</label>
+      <label class="control-label col-sm-1">:</label>
       <div class="col-sm-3">
         <input type="text" class="form-control" id="kelurahan" name="kelurahan" style="text-transform: capitalize;" placeholder="Kelurahan">
       </div>
     </div>
 
     <div class="form-group">
-      <label class="control-label col-sm-2" for="kecamatan">Kecamatan:</label>
+      <label class="control-label col-sm-2" for="kecamatan">Kecamatan</label>
+      <label class="control-label col-sm-1">:</label>
       <div class="col-sm-3">
         <input type="text" class="form-control" id="kecamatan" name="kecamatan" style="text-transform: capitalize;" placeholder="Kecamatan">
       </div>
     </div>
 
     <div class="form-group">
-      <label class="control-label col-sm-2" for="provinsi">Provinsi:</label>
+      <label class="control-label col-sm-2" for="provinsi">Provinsi</label>
+      <label class="control-label col-sm-1">:</label>
       <div class="col-sm-3">
         <input type="text" class="form-control" id="provinsi" name="provinsi" style="text-transform: capitalize;" placeholder="Provinsi">
       </div>
     </div>
 
     <div class="form-group">
-      <label class="control-label col-sm-2" for="kabkota">Kabupaten/Kota:</label>
+      <label class="control-label col-sm-2" for="kabkota">Kabupaten/Kota</label>
+      <label class="control-label col-sm-1">:</label>
       <div class="col-sm-3">
         <input type="text" class="form-control" id="kabkota" name="kabkota" style="text-transform: capitalize;" placeholder="Kabupaten">
       </div>
     </div>
 
     <div class="form-group">
-      <label class="control-label col-sm-2" for="negara">Negara:</label>
+      <label class="control-label col-sm-2" for="negara">Negara</label>
+      <label class="control-label col-sm-1">:</label>
       <div class="col-sm-5">
         <input type="text" class="form-control" id="negara" name="negara" style="text-transform: capitalize;" placeholder="Negara">
       </div>
     </div>
 
     <div class="form-group" required>
-      <label class="control-label col-sm-2" for="kontak">Kontak:</label>
+      <label class="control-label col-sm-2" for="kontak">Kontak</label>
+      <label class="control-label col-sm-1">:</label>
       <div class="col-sm-3">
         <input type="text" class="form-control" id="no_tlp" name="no_tlp" placeholder="Nomor Telepon">
       </div>
@@ -96,14 +105,16 @@
     </div>
 
     <div class="form-group">
-      <label class="control-label col-sm-2" for="nip">NIP:</label>
+      <label class="control-label col-sm-2" for="nip">NIP</label>
+      <label class="control-label col-sm-1">:</label>
       <div class="col-sm-4">
         <input type="number" class="form-control" id="nip" name="nip" placeholder="Nomor Induk Pegawai" required>
       </div>
     </div>
 
     <div class="form-group">
-      <label class="control-label col-sm-2" for="jenis_identitas">Identitas:</label>
+      <label class="control-label col-sm-2" for="jenis_identitas">Identitas</label>
+      <label class="control-label col-sm-1">:</label>
       <div class="col-sm-2">
         <select class="form-control" id="sel1" name="jenis_identitas">
           <option value="">Tidak Memilih</option>
@@ -123,13 +134,14 @@
     </ol>
 
     <div class="form-group">
-      <label class="control-label col-sm-2" for="select">Unit:</label>
+      <label class="control-label col-sm-2" for="select">Unit</label>
+      <label class="control-label col-sm-1">:</label>
       <div class="col-sm-4">
         <select class="form-control" id="kdunit" name="kdunit" required>
           <option selected="selected" value="">--Pilih Salah Satu--</option>
           <?php
           include '../config/koneksi.php';
-            $sel_prov="select * from r_unit_2018";
+            $sel_prov="select * from r_unit";
             $q=mysqli_query($konek,$sel_prov);
             while($data_prov=mysqli_fetch_array($q)){
           ?>
@@ -142,7 +154,8 @@
     </div>
 
     <div class="form-group">
-      <label class="control-label col-sm-2" for="select">Satuan Kerja:</label>
+      <label class="control-label col-sm-2" for="select">Satuan Kerja</label>
+      <label class="control-label col-sm-1">:</label>
       <div class="col-sm-4">
         <select class="form-control" id="kdsatker" name="kdsatker">
           <option selected="selected" value="">--Pilih Salah Satu--</option>
@@ -156,21 +169,24 @@
     </ol>
 
     <div class="form-group">
-      <label class="control-label col-sm-2" for="username">Username:</label>
+      <label class="control-label col-sm-2" for="username">Username</label>
+      <label class="control-label col-sm-1">:</label>
       <div class="col-sm-3">
         <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
       </div>
     </div>
 
     <div class="form-group">
-      <label class="control-label col-sm-2" for="password">Password:</label>
+      <label class="control-label col-sm-2" for="password">Password</label>
+      <label class="control-label col-sm-1">:</label>
       <div class="col-sm-3">
         <input type="password" class="form-control" id="password" name="password" placeholder="Password">
       </div>
     </div>
 
     <div class="form-group">
-      <label class="control-label col-sm-2" for="level">Level:</label>
+      <label class="control-label col-sm-2" for="level">Level</label>
+      <label class="control-label col-sm-1">:</label>
       <div class="col-sm-2">
         <select class="form-control" id="sel1" name="level" required>
           <option value="">Tidak Memilih</option>
@@ -178,12 +194,22 @@
           <option value="Operator">Operator</option>
         </select>
       </div>
-    </div><br><br>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="level">Foto</label>
+      <label class="control-label col-sm-1">:</label>
+      <div class="col-sm-6">
+        <input type="file" name="fileToUploadFoto" id="fileToUploadFoto">
+      </div>
+    </div>
     
     <div class="form-group">        
-      <div class="col-lg-offset-2 col-lg-5">
-        <a href="#"><button type="submit" class="btn btn-success btn-lg">Submit</button></a>
-        <a href="index.php?page=operator"><button type="submit" class="btn btn-basic btn-lg">Cancle</button></a>
+      <div class="col-lg-12">
+        <p align="right">
+          <a href="#"><button type="submit" class="btn btn-success btn-lg">Submit</button></a>
+          <a href="index.php?page=menuser"><button type="button" class="btn btn-basic btn-lg">Cancel</button></a>
+        </p>
       </div>
     </div>
   </form>

@@ -17,7 +17,7 @@
             </a>
             <script src="../js/jquery.min.js" type="text/javascript"></script>
             <script src="../js/highcharts.js" type="text/javascript"></script>
-            <script type="text/javascript">
+            <script type="text/javascript" >
             var chart1; // globally available
             $(document).ready(function() {
               chart1 = new Highcharts.Chart({
@@ -41,18 +41,15 @@
 
                 <?php 
 
-                include('../config/koneksi.php');
+                include('../config/koneksi.php'); 
 
-                
-                 
-
-                  $sql   = "SELECT nmunit FROM r_unit_2018";
+                  $sql   = "SELECT nmunit FROM r_unit";
                   $query = mysqli_query($konek, $sql )  or die(mysql_error($konek));
                   while( $ret = mysqli_fetch_array( $query ) ){
                     $merek=$ret['nmunit'];                     
-                    $sql_jumlah   = "SELECT sum(D.jml_setoran) AS realisasi FROM r_satker_2017 as S
-                    LEFT join r_unit_2018 AS U on S.kdunit = U.kdunit
-                    LEFT JOIN d_simponi_2017 as D on D.kdsatker = S.kdsatker
+                    $sql_jumlah   = "SELECT sum(D.jml_setoran) AS realisasi FROM r_satker as S
+                    LEFT join r_unit AS U on S.kdunit = U.kdunit
+                    LEFT JOIN d_simponi as D on D.kdsatker = S.kdsatker
                     WHERE S.kdaktif = 1 AND U.nmunit = '$merek' GROUP BY U.kdunit";
 
                     $query_jumlah = mysqli_query($konek,$sql_jumlah ) or die(mysql_error($konek));

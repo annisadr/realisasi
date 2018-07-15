@@ -7,24 +7,7 @@
 </div>
     
     <div class="row">
-        <!-- <form class="form-horizontal" action="" method="POST">
-            <div class="form-group">
-                <label class="control-label col-sm-1" for="select"><span class="glyphicon glyphicon-search"></span></label>
-                <div class="col-sm-3">
-                    <input type="text" class="form-control input-md" id="myInput" onkeyup="myFunction()" placeholder="Search for..." title="Type in a name">
-                </div>
-                <div class="col-sm-5"></div>
-                <div class="col-sm-2" align="right">
-                    <select class="form-control" id="jml" name="jml">
-                        <option selected="selected">10</option>
-                        <option>25</option>
-                        <option>50</option>
-                    </select>
-                </div>
-            </div>
-        </form> -->
-
-        <table class="table table-striped table-hover table-responsive" id="datatable" style="padding-left: 10%;">
+        <table class="table table-striped table-bordered table-hover table-responsive" id="datatable">
             <thead>
                 <tr style="font-size: 10px; text-align: center; background-color: #d9d9d9; border-color: black;">
                     <th style="text-align: center;">NO</th>
@@ -68,9 +51,9 @@
                                 echo '<td><font size="2px">'.$data['kdsatker'].'</font></td>';
                                 echo '<td><font size="2px">'.$data['username'].'</font></td>';
                                 echo '<td><font size="2px">'.$data['level'].'</font></td>';
-                                echo '<td><a href=index.php?page=duser&&id_user='.$data['id_user'].'><span class="glyphicon glyphicon-zoom-in"></span></a>
-                                <a href=index.php?page=euser&&id_user='.$data['id_user'].'><span class="glyphicon glyphicon-edit"></span></a>
-                                <a href="../config/delete_useroperator.php?id_user='.$data['id_user'].'"><span class="glyphicon glyphicon-trash"></span></a</td>';
+                                echo '<td><a href=index.php?page=duser&&id_user='.$data['id_user'].'><span class="glyphicon glyphicon-zoom-in"></span></a>&nbsp;&nbsp;&nbsp;
+                                <a href=index.php?page=euser&&id_user='.$data['id_user'].'><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;&nbsp;
+                                <a href="../config/delete_useroperator.php?id_user='.$data['id_user'].'"><span class="glyphicon glyphicon-trash"></span></a></td>';
                             echo '</tr>';
                             $no++;
                         }
@@ -81,7 +64,7 @@
       </div>
     </div>
 
-    <script>
+<!--     <script>
         function myFunction() {
         // Declare variables 
         var input, filter, table, tr, td, i;
@@ -103,7 +86,7 @@
         }
         }
 </script>
+ -->
 
 
-</body>
    

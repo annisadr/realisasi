@@ -25,7 +25,7 @@
  $level 			=	$_POST['level'];
  
 
- $input="INSERT INTO user(id_user,nama,alamat,rt,rw,kelurahan,kecamatan,provinsi,kabkota,negara,no_tlp,no_hp,email,nip,jenis_identitas,no_identitas,kdunit,kdsatker,username,password,level) values('','$nama','$alamat','$rt','$rw','$kelurahan','$kecamatan','$provinsi','$kabkota','$negara','$no_tlp','$no_hp','$email','$nip','$jenis_identitas','$no_identitas','$kdunit','$kdsatker',$username','$password','$level')";
+ $input="INSERT INTO user(id_user,nama,alamat,rt,rw,kelurahan,kecamatan,provinsi,kabkota,negara,no_tlp,no_hp,email,nip,jenis_identitas,no_identitas,kdunit,kdsatker,username,password,level) values('','$nama','$alamat','$rt','$rw','$kelurahan','$kecamatan','$provinsi','$kabkota','$negara','$no_tlp','$no_hp','$email','$nip','$jenis_identitas','$no_identitas','$kdunit','$kdsatker','$username','$password','$level')";
  $data=mysqli_query($konek,$input) or die (mysqli_error($konek));
 
  if($data){

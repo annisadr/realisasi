@@ -22,6 +22,7 @@ if($jlhrecord > 0){
 	session_start();
 	$_SESSION['id_user']=$id_user;
 	$_SESSION['username']=$username;
+	$_SESSION['password']=$password;
 	$_SESSION['level']=$level;
 
 	//redirect level

@@ -4,7 +4,7 @@ session_start();
 $out=session_destroy();
 if($out)
 {
-	echo "<strong><center>Anda Sudah Keluar Dari Halaman";
+	echo "<strong><center><h1>Anda Sudah Keluar Dari Halaman</h1>";
 
 }
 ?>

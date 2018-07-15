@@ -1,104 +1,263 @@
-<link rel="stylesheet" href="assets/css/chosen.min.css" />
-<div class='main-content-inner'>
-					<div class='breadcrumbs ace-save-state' id='breadcrumbs'>
-						<ul class='breadcrumb'>
-							<li>
-								<i class='ace-icon fa fa-table'></i>
-								<a href='#'>Data Santri</a>
-							</li>
-						</ul><!-- /.breadcrumb -->
-					</div>
+<script type="text/javascript" src="../jquery-3.2.1.min.js"></script>
+<div class="col-sm-12">
+    <div class="container">
+    	<div class="module-head">
+    		<h3><large>REALISASI PNBP</large></h3><hr><br>
+    	</div><br>
+    	<div class="col-sm-3" align="right">
+    		<a href="index.php?page=trealisasi" class="btn btn-primary btn-lg">
+    			<span class="glyphicon glyphicon-plus"></span> Tambah Data Realisasi PNBP
+    		</a>
+    	</div>
+    	<div class="col-sm-9" align="right">
+    		<a href="#" class="btn btn-default btn-md">
+    			<span class="glyphicon glyphicon-refresh"></span> Refresh
+    		</a>
+    	</div>
+    </div><br>
 
-					<div class='page-content'>
-						<div class='row'>
-							<div class='col-xs-12'>
-								<!-- PAGE CONTENT BEGINS -->
-								<div class='widget-box'>
-											<div class='widget-header'>
-												<h4 class='smaller'>Halaman Data Santri</h4>
-											</div>
+    <div class="row">
+    	<form class="form-horizontal" action="" method="POST">
+    		<div class="form-group">
+                <label class="control-label col-sm-3" for="select">Unit :</label>
+                <div class="col-sm-7">
+                    <select class="form-control" id="kdunit" name="kdunit">
+                        <option selected="selected">--Pilih Unit--</option>
+                        <?php
+                        include '../config/koneksi.php';
+                        $sel_prov="select * from r_unit";
+                        $q=mysqli_query($konek,$sel_prov);
+                        while($data_prov=mysqli_fetch_array($q)){
+                            ?>
+                            <option value="<?php echo $data_prov["kdunit"] ?>"><?php echo $data_prov["kdunit"] ?> | <?php echo $data_prov["nmunit"] ?></option>
+                            <?php
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+    			<label class="control-label col-sm-3" for="select">Satuan Kerja :</label>
+    			<div class="col-sm-7">
+                    <select class="form-control" id="kdsatker" name="kdsatker">
+                        <option selected="selected">--Pilih Satuan Kerja--</option>
+                            
+                    </select>
+    			</div>
+    		</div>
+    		<div class="form-group">
+    			<label class="control-label col-sm-3" for="select">Jenis Laporan :</label>
+    			<div class="col-sm-7">
+    				<select class="form-control" id="jenis" name="jenis">
+    					<option>--Pilih Jenis Laporan--</option>
+    					<option value="U">U</option>
+    					<option value="F">F</option>
+    				</select>
+    			</div>
+    		</div>
+    		<div class="form-group">
+    			<label class="control-label col-sm-3" for="select">Tanggal :</label>
+    			<div class="col-sm-2">
+    				<a href="#">
+                        <input type="date" class="form-control input-md" id="tanggalawal" name="tanggalawal"/>            
+                    </a>
+    			</div>
+    			<div class="col-sm-1" align="center">s/d</div>
+    			<div class="col-sm-2">
+    				<a href="#">
+                        <input type="date" class="form-control input-md" id="tanggalakhir" name="tanggalakhir"/>
+                    </a>
+    			</div>
+    		</div>
+    		<div class="form-group">
+    			<div class="col-sm-3" align="right">
+    				<a href="#" class="btn btn-info btn-md">
+    					<span class="glyphicon glyphicon-print"></span> Print
+    				</a>
+                </div>
+    			<div class="col-sm-7" align="right">
+    				<button type="submit" class="btn btn-success" name="cari">
+    					<span class="glyphicon glyphicon-search"></span> Search</button>
+    			</div>
+    		</div>
+    	</form>
 
-											<div class='widget-body'>
-												<div class='widget-main'>
-												<form class="form-horizontal" role="form" action="" method="post">
-												<div class="form-group">
-															<label class="col-sm-2 control-label no-padding-right" for="form-field-1-1"> Kelas </label>
-															<div class="col-sm-6">	
-															<select name="kelas" class="chosen-select form-control" id="form-field-select-3" data-placeholder="Choose a State...">
-																<option value="">  </option>
-																<?php
-																$tt=mysql_query("select * from kelas");
-																while($dd=mysql_fetch_array($tt))
-																{
-																echo "<option value=$dd[id_kelas]>$dd[nama_kelas]</option>";
-																}
-																?>
-															</select>
-															</div>
-														</div>
-												<div class="clearfix form-actions">
-										<div class="col-md-offset-2 col-md-9">
-											<input type="submit" class="btn btn" name="lihat" value="Lihat Data Santri">
-												
-										</div>
-									</div>
-								</form>		
-												<?php 
-												if(ISSET($_POST['lihat'])){
-												$xx=$_POST['kelas'];
-												$bb=mysql_query("select * from kelas where id_kelas='$xx'");
-												$mm=mysql_fetch_array($bb);
-												$gg=$mm['nama_kelas'];
-												
-												echo "<strong>Data Kelas $gg</strong>";
-												}
-												?>				
-												
-												<table id="simple-table" class="table  table-bordered table-hover">
-												<?php 
-												include "config/koneksi.php";
-												if(ISSET($_POST['lihat'])){
-												$kl=$_POST['kelas'];
-												$sql=mysql_query("select * from data_siswa where id_kelas='$kl'");
-												?>
-											<thead>
-												<tr>
-													<th>NIS</th>
-													<th>Nama Lengkap</th>
-													<th>Alamat</th>
-													<th>Tempat Lahir, Tgl Lahir</th>
-													<th>Jenis Kelamin</th>
-													<th>No Telpon</th>
-													<th>Foto</th>
-												</tr>
-											</thead>
-											<?php
-											while($data=mysql_fetch_array($sql))
-											{
-											?>
-											<tbody>
-												<tr>
-													<td><?php echo $data['nis'];?></td>
-													<td><?php echo $data['nama_lengkap'];?></td>
-													<td><?php echo $data['alamat'];?></td>
-													<td><?php echo $data['tempat_lahir'];?>, <?php echo $data['tgl_lahir'];?></td>
-													<td><?php echo $data['jenis_kelamin'];?></td>
-													<td><?php echo $data['no_telpon'];?></td>
-													<td><img src="images/<?php echo $data['foto'];?>" width="50" height="50"></td>
-													</tr>
-											</tbody>
-											<?php
-											}
-											}
-											?>
-										</table>
+    </div>
+    
+    <div class="row">
+        <table class="table table-striped table-bordered table-hover table-responsive" id="datatable">
+            <thead>
+                <tr style="font-size: 10px; text-align: center; background-color: #d9d9d9; border-color: black;">
+                    <th style="text-align: center;">NO</th>
+                    <th style="text-align: center;">KODE UNIT</th>
+                    <th style="text-align: center;">KODE SATKER</th>
+                    <th style="text-align: center;">WAJIB BAYAR / WAJIB SETOR</th>
+                    <th style="text-align: center;">KODE KLUS</th>
+                    <th style="text-align: center;">KODE BILLING</th>
+                    <th style="text-align: center;">KODE BP</th>
+                    <th style="text-align: center;">NTPN</th>
+                    <th style="text-align: center;">NTB / NTP</th>
+                    <th style="text-align: center;">KODE UF</th>
+                    <th style="text-align: center;">JUMLAH</th>
+                    <th style="text-align: center;">TANGGAL</th>
+                    <th style="text-align: center;">ACTION</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <?php
+                    include '../config/koneksi.php';
+                    $no_urut = 0;
+                    
+                    if(!isset($_POST['cari'])){
 
-													
-												</div>
-											</div>
-										</div>
-								<!-- PAGE CONTENT ENDS -->
-							</div><!-- /.col -->
-						</div><!-- /.row -->
-					</div><!-- /.page-content -->
-				</div>
+                        $query  = mysqli_query($konek, "SELECT U.kdunit, S.kdsatker, D.wbws, D.kode_klus, D.kode_billing, D.kode_bp, D.NTPN, D.ntbntp, D.kode_uf, D.jml_setoran, D.tanggal
+                            FROM r_satker as S
+                            LEFT join r_unit AS U on S.kdunit = U.kdunit
+                            LEFT JOIN d_simponi as D on D.kdsatker = S.kdsatker
+                            WHERE S.kdaktif = 1")or die(mysqli_error($konek));
+                                if(mysqli_num_rows($query) == 0){
+                                    echo '<tr><td collspan="12" align="center">Tidak ada data!</td></tr>';
+                                }
+                                else{
+                                    $no = 1;
+                                    while ($data = mysqli_fetch_array($query)) {
+                                        $no_urut++;
+                                        echo '<tr align="center">';
+                                            echo '<td><font size="2px">'.$no_urut.'</font></td>';
+                                            echo '<td><font size="1px">'.$data['kdunit'].'</font></td>';
+                                            echo '<td><font size="1px">'.$data['kdsatker'].'</font></td>';
+                                            echo '<td><font size="1px">'.$data['wbws'].'</font></td>';
+                                            echo '<td><font size="1px">'.$data['kode_klus'].'</font></td>';
+                                            echo '<td><font size="1px">'.$data['kode_billing'].'</font></td>';
+                                            echo '<td><font size="1px">'.$data['kode_bp'].'</font></td>';
+                                            echo '<td><font size="1px">'.$data['NTPN'].'</font></td>';
+                                            echo '<td><font size="1px">'.$data['ntbntp'].'</font></td>';
+                                            echo '<td><font size="1px">'.$data['kode_uf'].'</font></td>';
+                                            echo '<td><font size="1px">'.$data['jml_setoran'].'</font></td>';
+                                            echo '<td><font size="1px">'.$data['tanggal'].'</font></td>';
+                                            echo '<td><p><a href="index.php?page=drealisasi&&kdunit='.$data['kdunit'].'&&wbws='.$data['wbws'].'&&NTPN='.$data['NTPN'].'"><span class="glyphicon glyphicon-zoom-in"></span></a></p>
+                                            <p><a href="index.php?page=erealisasi&&kdunit='.$data['kdunit'].'&&wbws='.$data['wbws'].'&&NTPN='.$data['NTPN'].'"><span class="glyphicon glyphicon-edit"></span></a></p>
+                                            <p><a href="../config/delete_realisasi.php?kdunit='.$data['kdunit'].'&&wbws='.$data['wbws'].'&&NTPN='.$data['NTPN'].'"><span class="glyphicon glyphicon-trash"></span></a></p></td>';
+                                        echo '</tr>';
+                                        $no++;
+                                    }
+                                }
+                    }
+
+                    else{
+                        $kdunit = $_POST['kdunit'];
+                        $kdsatker = $_POST['kdsatker'];
+                        $jenis = $_POST['jenis'];
+                        $tanggalawal = $_POST['tanggalawal'];
+                        $tanggalakhir = $_POST['tanggalakhir'];
+
+                        $query  = mysqli_query($konek, "SELECT U.kdunit, S.kdsatker, D.wbws, D.kode_klus, D.kode_billing, D.kode_bp, D.NTPN, D.ntbntp, D.kode_uf, D.jml_setoran, D.tanggal
+                            FROM r_satker as S
+                            LEFT join r_unit AS U on S.kdunit = U.kdunit
+                            LEFT JOIN d_simponi as D on D.kdsatker = S.kdsatker
+                            WHERE S.kdaktif = 1 AND D.kdunit = '$kdunit' AND D.kode_uf = '$jenis' AND S.kdsatker = '$kdsatker' AND D.tanggal BETWEEN '$tanggalawal' AND '$tanggalakhir'")or die(mysqli_error($konek));
+                                if(mysqli_num_rows($query) == 0){
+                                    echo '<tr><td collspan="12" align="center">Tidak ada data!</td></tr>';
+                                }
+                                else{
+                                    $no = 1;
+                                    while ($data = mysqli_fetch_array($query)) {
+                                        $no_urut++;
+                                        echo '<tr align="center">';
+                                            echo '<td><font size="2px">'.$no_urut.'</font></td>';
+                                            echo '<td><font size="1px">'.$data['kdunit'].'</font></td>';
+                                            echo '<td><font size="1px">'.$data['kdsatker'].'</font></td>';
+                                            echo '<td><font size="1px">'.$data['wbws'].'</font></td>';
+                                            echo '<td><font size="1px">'.$data['kode_klus'].'</font></td>';
+                                            echo '<td><font size="1px">'.$data['kode_billing'].'</font></td>';
+                                            echo '<td><font size="1px">'.$data['kode_bp'].'</font></td>';
+                                            echo '<td><font size="1px">'.$data['NTPN'].'</font></td>';
+                                            echo '<td><font size="1px">'.$data['ntbntp'].'</font></td>';
+                                            echo '<td><font size="1px">'.$data['kode_uf'].'</font></td>';
+                                            echo '<td><font size="1px">'.$data['jml_setoran'].'</font></td>';
+                                            echo '<td><font size="1px">'.$data['tanggal'].'</font></td>';
+                                            echo '<td><p><a href="index.php?page=drealisasi&&kdunit='.$data['kdunit'].'&&wbws='.$data['wbws'].'&&NTPN='.$data['NTPN'].'"><span class="glyphicon glyphicon-zoom-in"></span></a></p>
+                                            <p><a href="index.php?page=erealisasi&&kdunit='.$data['kdunit'].'&&wbws='.$data['wbws'].'&&NTPN='.$data['NTPN'].'"><span class="glyphicon glyphicon-edit"></span></a></p>
+                                            <p><a href="../config/delete_realisasi.php?kdunit='.$data['kdunit'].'&&wbws='.$data['wbws'].'&&NTPN='.$data['NTPN'].'"><span class="glyphicon glyphicon-trash"></span></a></p></td>';
+                                        echo '</tr>';
+                                        $no++;
+                                    }
+                                }
+                    }
+
+                    // }        
+                ?>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan='10' align="left">Total</td>
+                    <td colspan="1" align="center">
+                        <?php
+
+                            if(!isset($_POST['cari'])){
+                                $querytampil = mysqli_query($konek, "SELECT SUM(D.jml_setoran) as realisasi
+                                FROM r_unit AS U
+                                LEFT JOIN r_satker AS S ON S.kdunit = U.kdunit
+                                LEFT JOIN d_simponi AS D ON D.kdsatker = S.kdsatker
+                                WHERE   S.kdaktif = 1")  or die(mysqli_error($konek));
+                                $data = mysqli_fetch_array($querytampil);
+                                echo "".$data['realisasi']."";    
+                            }
+                            else{
+                                $kdsatker = $_POST['kdsatker'];
+                                $jenis = $_POST['jenis'];
+                                $tanggalawal = $_POST['tanggalawal'];
+                                $tanggalakhir = $_POST['tanggalakhir'];
+
+                                $querytampil = mysqli_query($konek, "SELECT SUM(D.jml_setoran) as jumlah
+                                    FROM r_unit AS U
+                                    LEFT JOIN r_satker AS S ON S.kdunit = U.kdunit
+                                    LEFT JOIN d_simponi AS D ON D.kdsatker = S.kdsatker
+                                    WHERE S.kdunit = 01 AND S.kdaktif = 1 AND D.kode_uf = '$jenis' AND S.kdsatker = '$kdsatker' AND D.tanggal BETWEEN '$tanggalawal' AND '$tanggalakhir'")  or die(mysqli_error($konek));
+                                $data = mysqli_fetch_array($querytampil);
+                                echo "".$data['jumlah']."";
+                            }
+                            
+                        ?>
+                    </td>
+                    <td colspan='2' align="left"></td>
+                </tr>
+            </tfoot>
+        </table>
+      </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+
+<script type="text/javascript">
+    $("#kdunit").change(function(){
+    
+        // variabel dari nilai combo box provinsi
+        var kdunit = $("#kdunit").val();
+        
+        // mengirim dan mengambil data
+        $.ajax({
+            type: "POST",
+            dataType: "html",
+            url: "ajax_unit.php",
+            data: "kdunit="+kdunit,
+            success: function(msg){
+                
+                // jika tidak ada data
+                if(msg == ''){
+                    alert('Tidak ada data Unit');
+                }
+                
+                // jika dapat mengambil data,, tampilkan di combo box kota
+                else{
+                    $("#kdsatker").html(msg);                                                      
+                }
+                
+            }
+        });     
+    });
+</script>

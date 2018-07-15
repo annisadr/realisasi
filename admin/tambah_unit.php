@@ -4,8 +4,8 @@
   <h6>
     <a href="index.php?page=lpnbp">Laporan per-Unit</a> > Tambah
   </h6><br><br>
-  <p><i>Please, fill your information with correctly!</i></p>
-  <form action="../config/proses_addoperator.php" method="POST" class="form-horizontal">
+  <p><i>Please, fill with correctly!</i></p>
+  <form action="../config/proses_addunit.php" method="POST" class="form-horizontal">
     
     <!-- <div class="form-group">
       <label class="control-label col-sm-3" for="id">ID:</label>
@@ -49,7 +49,7 @@
     <div class="form-group">        
       <div class="col-lg-offset-2 col-lg-5">
         <a href="#"><button type="submit" class="btn btn-success btn-lg">Submit</button></a>
-        <a href="index.php?page=operator"><button type="submit" class="btn btn-basic btn-lg">Cancle</button></a>
+        <a href="index.php?page=operator"><button type="submit" class="btn btn-basic btn-lg">Cancel</button></a>
       </div>
     </div>
   </form>

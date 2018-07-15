@@ -16,9 +16,9 @@
   <title>Biro Keuangan Kementerian Pekerjaan Umum dan Perumahan Rakyat</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../dataTables/datatables.min.css">
+  
   <style type="text/css">
     .dropbtn {
       cursor: pointer;
@@ -46,7 +46,7 @@
       text-decoration: none;
       display: block;
     }
-
+    
     .dropdown:hover .dropdown-content {
       display: block;
       background-color: #254d74;
@@ -125,16 +125,24 @@
       padding-top: 30px; 
       height: 200px;
     }
+
+    .avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
   </style>
 </head>
 
 <body>
+
   <div class="container-fluid" style="background-color:white;color:#fff;height:100px;">
     <img src="../gambar/Biro_Keuangan.png" style="padding-top: 10px;">
   </div>
 
-  <nav class="navbar navbar-default bg-info" data-spy="affix" data-offset-top="197">
-  <div class="container-fluid ">
+  <nav class="navbar navbar-inverse bg-info" data-spy="affix" data-offset-top="197">
+  <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
@@ -147,16 +155,16 @@
         <img src="gambar/Biro_Keuangan.png" style="height: 70px; padding-left: 20px; padding-top: 5px; position: fixed;">
       </ul> -->
       <ul class="nav navbar-nav">
-        <li>
-          <a href="index.php?page=index">Dashboard</a>
+        <li class="nv">
+          <a href="index.php?page=index" class="tulisan">Dashboard</a>
         </li>
 
-        <li class="dropdown">
+        <li class="dropdown nv" >
           <a class="dropbtn">Profil</a>
           
           <ul style="font-size: 15px;">
             <li class="dropdown-content">
-              <a href="index.php?page=strukturor">Struktur Organisasi</a>
+              <a href="index.php?page=strukturor" class="nv">Struktur Organisasi</a>
               <a href="index.php?page=tf">Tugas dan Fungsi</a>
             </li>
           </ul>
@@ -164,10 +172,6 @@
 
         <li>
           <a href="index.php?page=realisasi">Realisasi PNBP</a>
-        </li>        
-
-        <li>
-          <a href="index.php?page=faq">FAQ</a>
         </li>
 
       </ul>
@@ -183,14 +187,16 @@
         ?> -->
 
         <li>
-          <a href="../config/logout.php">Logout</a>
+          <a href="../config/logout.php">
+            <!-- <img src="#" alt="Avatar" class="avatar"> -->Logout <span class="glyphicon glyphicon-log-out"></span>
+          </a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 
-<div class="container">    
+<div class="container-fluid">    
     <div class="row">
       <?php
         if ($page=='index')
@@ -199,6 +205,30 @@
         include ('struktur.php');
         elseif ($page=='tf')
         include ('tugasfungsi.php');
+        elseif ($page=='lpnbp')
+        include ('perunit2017.php');
+        elseif ($page=='sekjen')
+        include ('sekjen.php');
+        elseif ($page=='injen')
+        include ('injen.php');
+        elseif ($page=='binamarga')
+        include ('djbinamarga.php');
+        elseif ($page=='ciptakarya')
+        include ('djciptakarya.php');
+        elseif ($page=='sda')
+        include ('djsda.php');
+        elseif ($page=='penyediaanp')
+        include ('penyediaanp.php');
+        elseif ($page=='pembiayaanp')
+        include ('pembiayaanp.php');
+        elseif ($page=='bpp')
+        include ('bpp.php');
+        elseif ($page=='binakonstruksi')
+        include ('binakonstruksi.php');
+        elseif ($page=='piw')
+        include ('infrastrukturwil.php');
+        elseif ($page=='sdm')
+        include ('bpengembangansdm.php');
         elseif ($page=='tf1')
         include ('tftatalaksana.php');
         elseif ($page=='tf2')
@@ -209,10 +239,36 @@
         include ('tfevaluasi.php');
         elseif ($page=='faq')
         include ('faq.php');
+        elseif ($page=='menuser')
+        include ('manajemenuser.php');
+        elseif ($page=='su')
+        include ('signupuser.php');
         elseif ($page=='tambahfaq')
         include ('tambahfaq.php');
+        elseif ($page=='editfaq')
+        include ('edit_faq.php');
         elseif ($page=='realisasi')
         include ('realisasipnbp.php');
+        elseif ($page=='persatker')
+        include ('lpersatker.php');
+        elseif ($page=='tunit')
+        include ('tambah_unit.php');
+        elseif ($page=='trpnbp')
+        include ('tambah_rpnbp.php');
+        elseif ($page=='euser')
+        include ('edit_user.php');
+        elseif ($page=='duser')
+        include ('detail_user.php');
+        elseif ($page=='eunit')
+        include ('edit_unit.php');
+        elseif ($page=='tsatker')
+        include ('tambah_satker.php');
+        elseif ($page=='trealisasi')
+        include ('tambah_realisasi.php');
+        elseif ($page=='dunit')
+        include ('detail_unit.php');
+        elseif ($page=='drealisasi')
+        include ('detail_realisasi.php');
       ?>
     </div>
   </div>
@@ -234,5 +290,28 @@
     
     
   </footer>
+
+  <!-- <script>
+    window.onscroll = function() {myFunction()};
+    var navbar = document.getElementById("navbar");
+    var sticky = navbar.offsetTop;
+    function myFunction() {
+      if (window.pageYOffset >= sticky) {
+        navbar.classList.add("sticky")
+      } else {
+        navbar.classList.remove("sticky");
+      }
+    }
+  </script> -->
+  <script src="../dataTables/jQuery-3.3.1/jquery-3.3.1.min.js"></script>
+  <script src="../bootstrap/js/bootstrap.min.js"></script>
+  <script src="../dataTables/datatables.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#datatable').DataTable();
+    });
+  </script>
+
 </body>
 </html>

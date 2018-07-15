@@ -14,7 +14,7 @@
     </h6><br><br>
 
     <a href="#">
-      <span class="glyphicon glyphicon-edit"></span>
+      <span class="glyphicon glyphicon-edit" style="color: blue;"></span>
     </a>
     
     <a href="#">

@@ -16,7 +16,7 @@
   <title>Biro Keuangan Kementerian Pekerjaan Umum dan Perumahan Rakyat</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../dataTables/datatables.min.css">
   
   <style type="text/css">
@@ -125,6 +125,13 @@
       padding-top: 30px; 
       height: 200px;
     }
+
+    .avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
   </style>
 </head>
 
@@ -134,7 +141,7 @@
     <img src="../gambar/Biro_Keuangan.png" style="padding-top: 10px;">
   </div>
 
-  <nav class="navbar navbar-default bg-info" data-spy="affix" data-offset-top="197">
+  <nav class="navbar navbar-inverse bg-info" data-spy="affix" data-offset-top="197">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -179,10 +186,6 @@
           <a href="index.php?page=menuser">Manajemen User</a>
         </li>
 
-        <li>
-          <a href="index.php?page=faq">FAQ</a>
-        </li>
-
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -196,7 +199,9 @@
         ?> -->
 
         <li>
-          <a href="../config/logout.php">Logout</a>
+          <a href="../config/logout.php">
+            <!-- <img src="#" alt="Avatar" class="avatar"> -->Logout <span class="glyphicon glyphicon-log-out"></span>
+          </a>
         </li>
       </ul>
     </div>
@@ -264,8 +269,26 @@
         include ('tambah_rpnbp.php');
         elseif ($page=='euser')
         include ('edit_user.php');
+        elseif ($page=='erealisasi')
+        include ('edit_realisasi.php');
         elseif ($page=='duser')
         include ('detail_user.php');
+        elseif ($page=='eunit')
+        include ('edit_unit.php');
+        elseif ($page=='esatker')
+        include ('edit_satker.php');
+        elseif ($page=='tsatker')
+        include ('tambah_satker.php');
+        elseif ($page=='trealisasi')
+        include ('tambah_realisasi.php');
+        elseif ($page=='dunit')
+        include ('detail_unit.php');
+        elseif ($page=='drealisasi')
+        include ('detail_realisasi.php');
+        elseif ($page=='dsatker')
+        include ('detail_satker.php');
+        elseif ($page=='drealnit')
+        include ('detail_realnit.php');
       ?>
     </div>
   </div>

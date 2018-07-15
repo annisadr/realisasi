@@ -4,7 +4,7 @@
           <span class="glyphicon glyphicon-plus"></span> Tambah Data 
         </a>
 
-        <a href="printfaq.php"  target ="_blank" role="button" class="btn btn-success btn-lg">
+        <a href="printfaq.php" target ="_blank" role="button" type="button" class="btn btn-success btn-lg">
           <span class="glyphicon glyphicon-plus"></span> PRINT NIH CERITANYA
         </a>
     </div><br>

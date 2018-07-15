@@ -11,17 +11,26 @@
   $data    = mysqli_fetch_array($hasil);
 
 ?>
-<div class="col-sm-12">
+<div class="container">
+  <div class="col-sm-12">
   <div class="well">
     <h5><a href="index.php?page=menuser">Manajemen User</a> /
       <a href="index.php?page=menuser">Data User</a> / Data Lengkap User</h5>
   </div>
 
-  <div class="col-md-10" style="min-height:500px">
+  <div class="col-md-12" style="min-height:500px">
   <h3><b>Data Lengkap</b> User</h3>
     <hr>
+    <p align="left">
+      <a href="../print_user.php">
+        <button type="button" class="btn btn-default btn-lg">
+          <span class="glyphicon glyphicon-print"></span> Print
+        </button>
+      </a>
+    </p>
+
     <form class="form-horizontal" action="#" method="POST">
-    <input type="hidden" name="id_pembayaran" value="<?php echo $id_pembayaran?>">
+    
     <div class="panel-group">
     <div class="panel panel-primary">
       <div class="panel-heading">Data Lengkap User</div>
@@ -121,6 +130,7 @@
 </div>
 </div>
 </form> 
+</div>
 </div>
 </div>
 </div>
