@@ -3,16 +3,23 @@
 
     <div class="module-head">
         <h3><large>REALISASI PNBP PER - SATKER</large></h3><hr><br>
-        <a href="index.php?page=tsatker" class="btn btn-primary btn-lg">
-          <span class="glyphicon glyphicon-plus"></span> Tambah Data Satuan Kerja
-        </a>
-    </div><br>
-
-    <!-- <div class="row">
-    	<form class="form-horizontal" action="" method="POST">
-    		<div class="form-group">
-                <label class="control-label col-sm-3" for="select">Unit :</label>
-                <div class="col-sm-7">
+        <div class="col-sm-3">
+            <a href="index.php?page=tsatker" class="btn btn-primary btn-lg">
+              <span class="glyphicon glyphicon-plus"></span> Tambah Data Satuan Kerja
+            </a>
+        </div>
+        <div class="col-sm-9" align="right">
+            <button type="button" class="btn" name="print">
+                <a href="print_persatker.php&&kdunit=<?php echo $data['kdunit']; ?>">
+                  <span class="glyphicon glyphicon-print"></span> Print
+                </a>
+            </button>
+        </div><br><br><br><br>
+        <div class="col-sm-12" align="center">
+            <form class="form-horizontal" action="" method="POST">
+            <div class="form-group">
+                <label class="control-label col-sm-4" for="select">Unit :</label>
+                <div class="col-sm-4">
                     <select class="form-control" id="kdunit" name="kdunit">
                         <option selected="selected" value="">--Pilih Unit--</option>
                         <?php
@@ -20,35 +27,26 @@
                         $sel_prov="select * from r_unit";
                         $q=mysqli_query($konek,$sel_prov);
                         while($data_prov=mysqli_fetch_array($q)){
-                        	?>
-                        	<option value="<?php echo $data_prov["kdunit"] ?>"><?php echo $data_prov["kdunit"] ?> | <?php echo $data_prov["nmunit"] ?></option>
-                        	<?php
+                            ?>
+                            <option value="<?php echo $data_prov["kdunit"] ?>"><?php echo $data_prov["kdunit"] ?> | <?php echo $data_prov["nmunit"] ?></option>
+                            <?php
                         }
                         ?>
                     </select>
                 </div>
+                <div class="col-sm-1" align="right">
+                    <button type="submit" class="btn btn-success" name="cari">
+                        <span class="glyphicon glyphicon-search"></span> Search
+                    </button>
+                </div>
             </div>
-            <div class="form-group">
-    			<label class="control-label col-sm-3" for="select">Satuan Kerja :</label>
-    			<div class="col-sm-7">
-                    <select class="form-control" id="kdsatker" name="kdsatker">
-                        <option selected="selected">--Pilih Satuan Kerja--</option>
-                    </select>
-    			</div>
-    		</div>
-    		<div class="form-group">
-    			<div class="col-sm-10" align="right">
-    				<button type="submit" class="btn btn-primary" name="cari">Search</button>
-    			</div>
-    		</div>
-    	</form>
-    </div> -->
-
+            </form>
+        </div>
+        
+        
 
     <div class="row">
-    	<a href="#">
-      <span class="glyphicon glyphicon-print"></span>
-    </a>
+    	<br><br><br><br><br>
 
 	<div class="module-body table">
 		<table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display" width="100%" id="datatable">
@@ -67,9 +65,13 @@
 				<?php
 					include '../config/koneksi.php';
 					$no_urut = 0;
-                    $query = mysqli_query($konek, "SELECT S.kdsatker, S.nmsatker, S.kdunit, S.kdaktif, sum(D.jml_setoran) AS realisasi FROM d_simponi AS D LEFT JOIN r_satker as S on D.kdsatker = S.kdsatker WHERE S.kdaktif = 1 GROUP BY S.kdsatker") or die(mysqli_error($konek));
 
-                        if(mysqli_num_rows($query) == 0){
+                    if(!isset($_POST['cari'])){
+
+                        $query = mysqli_query($konek, "SELECT S.kdsatker, S.nmsatker, S.kdunit, S.kdaktif, sum(D.jml_setoran) AS realisasi FROM r_satker as S LEFT JOIN r_unit AS U on U.kdunit = S.kdunit LEFT JOIN d_simponi AS D on D.kdsatker = S.kdsatker WHERE S.kdaktif = 1 GROUP BY S.kdsatker") or die(mysqli_error($konek));
+
+
+                                if(mysqli_num_rows($query) == 0){
                             echo '<tr><td collspan="4" align="center">Tidak ada data!</td></tr>';
                         }
                         else{
@@ -83,31 +85,82 @@
                                     echo '<td><font size="2px">'.$data['kdunit'].'</font></td>';
                                     echo '<td><font size="2px">'.$data['kdaktif'].'</font></td>';
                                     echo '<td><font size="2px">'.$data['realisasi'].'</font></td>';
-                                    echo '<td><p><a href="index.php?page=dsatker&&kdsatker='.$data['kdsatker'].'"><span class="glyphicon glyphicon-zoom-in"></span></a></p>
-                                    <p><a href="index.php?page=esatker&&kdsatker='.$data['kdsatker'].'"><span class="glyphicon glyphicon-edit"></span></a></p>
-                                    <p><a href="../config/delete_satker.php?kdsatker='.$data['kdsatker'].'"><span class="glyphicon glyphicon-trash"></span></a></p></td>';
+                                    echo '<td><a href="index.php?page=dsatker&&kdsatker='.$data['kdsatker'].'"><span class="glyphicon glyphicon-zoom-in"></span></a>
+                                    <a href="index.php?page=esatker&&kdsatker='.$data['kdsatker'].'"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a href="../config/delete_satker.php?kdsatker='.$data['kdsatker'].'"><span class="glyphicon glyphicon-trash"></span></a></td>';
                                 echo '</tr>';
                                 $no++;
                             }
                         }
+                    }
+
+                    else{
+                        $kdunit = $_POST['kdunit'];
+                        
+
+                        $query = mysqli_query($konek, "SELECT S.kdsatker, S.nmsatker, S.kdunit, S.kdaktif, sum(D.jml_setoran) AS realisasi FROM r_satker as S LEFT JOIN r_unit AS U on U.kdunit = S.kdunit LEFT JOIN d_simponi AS D on D.kdsatker = S.kdsatker WHERE S.kdaktif = 1 AND S.kdunit = '$kdunit' GROUP BY S.kdsatker") or die(mysqli_error($konek));
+
+
+                                if(mysqli_num_rows($query) == 0){
+                            echo '<tr><td collspan="4" align="center">Tidak ada data!</td></tr>';
+                        }
+                        else{
+                            $no = 1;
+                            while ($data = mysqli_fetch_array($query)) {
+                                $no_urut++;
+                                echo '<tr align="center">';
+                                    echo '<td><font size="2px">'.$no_urut.'</font></td>';
+                                    echo '<td><font size="2px">'.$data['kdsatker'].'</font></td>';
+                                    echo '<td><font size="2px">'.$data['nmsatker'].'</font></td>';
+                                    echo '<td><font size="2px">'.$data['kdunit'].'</font></td>';
+                                    echo '<td><font size="2px">'.$data['kdaktif'].'</font></td>';
+                                    echo '<td><font size="2px">'.$data['realisasi'].'</font></td>';
+                                    echo '<td><a href="index.php?page=dsatker&&kdsatker='.$data['kdsatker'].'"><span class="glyphicon glyphicon-zoom-in"></span></a>
+                                    <a href="index.php?page=esatker&&kdsatker='.$data['kdsatker'].'"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a href="../config/delete_satker.php?kdsatker='.$data['kdsatker'].'"><span class="glyphicon glyphicon-trash"></span></a></td>';
+                                echo '</tr>';
+                                $no++;
+                            }
+                        }
+                    }
+
+                    
+
+                        
                 ?>
 			</tbody>
             <tr>
-                    <td colspan='5' style="padding-left: 50px;">Total</td>
-                    <td align="center">
+                    <td colspan='5' align="left">Total</td>
+                    <td colspan="1" align="center">
                         <?php
 
-                            $querytampil = mysqli_query($konek, "SELECT SUM(D.jml_setoran) as realisasi
+                            if(!isset($_POST['cari'])){
+                                $querytampil = mysqli_query($konek, "SELECT SUM(D.jml_setoran) as realisasi
                                 FROM r_unit AS U
                                 LEFT JOIN r_satker AS S ON S.kdunit = U.kdunit
                                 LEFT JOIN d_simponi AS D ON D.kdsatker = S.kdsatker
-                                WHERE   S.kdaktif = 1")or die(mysqli_error($konek));
-                            $data = mysqli_fetch_array($querytampil);
-                            echo "".$data['realisasi']."";
+                                WHERE   S.kdaktif = 1")  or die(mysqli_error($konek));
+                                $data = mysqli_fetch_array($querytampil);
+                                echo "".$data['realisasi']."";    
+                            }
+                            else{
+                                $kdunit = $_POST['kdunit'];
+                                
+
+                                $querytampil = mysqli_query($konek, "SELECT SUM(D.jml_setoran) as jumlah
+                                    FROM r_unit AS U
+                                    LEFT JOIN r_satker AS S ON S.kdunit = U.kdunit
+                                    LEFT JOIN d_simponi AS D ON D.kdsatker = S.kdsatker
+                                    WHERE S.kdunit = '$kdunit' AND S.kdaktif = 1")  or die(mysqli_error($konek));
+                                $data = mysqli_fetch_array($querytampil);
+                                echo "".$data['jumlah']."";
+                            }
+                            
                         ?>
                     </td>
-                    <td colspan='3' style="padding-left: 50px;"></td>
+                    <td colspan='3' align="left"></td>
                 </tr>
+            
 		</table>
 	</div>
     </div>  

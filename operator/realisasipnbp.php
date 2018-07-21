@@ -1,3 +1,26 @@
+<?php
+
+  error_reporting(0);
+
+  include '../config/koneksi.php';
+
+  $kdunit = $_GET['kdunit'];
+  $kdsatker = $_GET['kdsatker'];
+  $jenis = $_GET['jenis'];
+  $tanggalakhir = $_GET['tanggalawal'];
+
+  $edit    = "SELECT * FROM r_unit WHERE kdunit = '$kdunit'";
+  $hasil   = mysqli_query($konek, $edit)or die(mysql_error());
+  $data    = mysqli_fetch_array($hasil);
+
+  $id_user = $_GET['id_user'];
+
+  $edit1    = "SELECT * FROM user WHERE id_user = '$id_user'";
+  $hasil1   = mysqli_query($konek, $edit1)or die(mysql_error());
+  $data1    = mysqli_fetch_array($hasil1);
+
+?>
+
 <script type="text/javascript" src="../jquery-3.2.1.min.js"></script>
 <div class="col-sm-12">
     <div class="container">
@@ -5,7 +28,7 @@
     		<h3><large>REALISASI PNBP</large></h3><hr><br>
     	</div><br>
     	<div class="col-sm-3" align="right">
-    		<a href="index.php?page=trealisasi" class="btn btn-primary btn-lg">
+    		<a href="index.php?page=trealisasi&&id_user=<?php echo $data1['id_user']; ?>&&kdunit=<?php echo $data['kdunit']; ?>" class="btn btn-primary btn-lg">
     			<span class="glyphicon glyphicon-plus"></span> Tambah Data Realisasi PNBP
     		</a>
     	</div>
@@ -22,17 +45,7 @@
                 <label class="control-label col-sm-3" for="select">Unit :</label>
                 <div class="col-sm-7">
                     <select class="form-control" id="kdunit" name="kdunit">
-                        <option selected="selected">--Pilih Unit--</option>
-                        <?php
-                        include '../config/koneksi.php';
-                        $sel_prov="select * from r_unit";
-                        $q=mysqli_query($konek,$sel_prov);
-                        while($data_prov=mysqli_fetch_array($q)){
-                            ?>
-                            <option value="<?php echo $data_prov["kdunit"] ?>"><?php echo $data_prov["kdunit"] ?> | <?php echo $data_prov["nmunit"] ?></option>
-                            <?php
-                        }
-                        ?>
+                        <option selected="selected"><?php echo $data['kdunit'];?> | <?php echo $data['nmunit'];?></option>
                     </select>
                 </div>
             </div>
@@ -41,7 +54,19 @@
     			<div class="col-sm-7">
                     <select class="form-control" id="kdsatker" name="kdsatker">
                         <option selected="selected">--Pilih Satuan Kerja--</option>
-                            
+                            <?php
+                            $nmsatker = "SELECT S.kdsatker, S.nmsatker FROM r_unit AS U
+                            LEFT JOIN r_satker AS S ON S.kdunit = U.kdunit WHERE S.kdunit = '$kdunit' AND S.kdaktif = 1 ORDER BY kdsatker";
+                            $querynmsatker = mysqli_query($konek,$nmsatker);
+                            while ($datanmsatker = mysqli_fetch_array($querynmsatker)) {
+                            ?>
+                        <option value="<?php echo $datanmsatker['kdsatker'] ?>">
+                            <?php echo $datanmsatker["kdsatker"] ?> | 
+                            <?php echo $datanmsatker["nmsatker"] ?>
+                        </option>
+                            <?php
+                                }
+                            ?>    
                     </select>
     			</div>
     		</div>
@@ -111,7 +136,7 @@
                     
                     if(!isset($_POST['cari'])){
 
-                        $query  = mysqli_query($konek, "SELECT U.kdunit, S.kdsatker, D.wbws, D.kode_klus, D.kode_billing, D.kode_bp, D.NTPN, D.ntbntp, D.kode_uf, D.jml_setoran, D.tanggal FROM d_simponi as D LEFT JOIN r_satker as S on D.kdsatker = S.kdsatker LEFT JOIN r_unit as U on U.kdunit = D.kdunit WHERE S.kdaktif = 1")or die(mysqli_error($konek));
+                        $query  = mysqli_query($konek, "SELECT U.kdunit, S.kdsatker, D.wbws, D.kode_klus, D.kode_billing, D.kode_bp, D.NTPN, D.ntbntp, D.kode_uf, D.jml_setoran, D.tanggal FROM d_simponi as D LEFT JOIN r_satker as S on D.kdsatker = S.kdsatker LEFT JOIN r_unit as U on U.kdunit = D.kdunit WHERE S.kdaktif = 1 AND U.kdunit = '$kdunit'")or die(mysqli_error($konek));
                                 if(mysqli_num_rows($query) == 0){
                                     echo '<tr><td collspan="12" align="center">Tidak ada data!</td></tr>';
                                 }
@@ -132,7 +157,7 @@
                                             echo '<td><font size="1px">'.$data['kode_uf'].'</font></td>';
                                             echo '<td><font size="1px">'.$data['jml_setoran'].'</font></td>';
                                             echo '<td><font size="1px">'.$data['tanggal'].'</font></td>';
-                                            echo '<td><p><a href="index.php?page=drealisasi&&kdunit='.$data['kdunit'].'&&wbws='.$data['wbws'].'"><span class="glyphicon glyphicon-zoom-in"></span></a></p></td>';
+                                            echo '<td><p><a href="index.php?page=drealisasi&&kdunit='.$data['kdunit'].'&&wbws='.$data['wbws'].'&&id_user='.$data1['id_user'].'"><span class="glyphicon glyphicon-zoom-in"></span></a></p></td>';
                                         echo '</tr>';
                                         $no++;
                                     }
@@ -140,12 +165,13 @@
                     }
 
                     else{
+
                         $kdsatker = $_POST['kdsatker'];
                         $jenis = $_POST['jenis'];
                         $tanggalawal = $_POST['tanggalawal'];
                         $tanggalakhir = $_POST['tanggalakhir'];
 
-                        $query  = mysqli_query($konek, "SELECT U.kdunit, S.kdsatker, D.wbws, D.kode_klus, D.kode_billing, D.kode_bp, D.NTPN, D.ntbntp, D.kode_uf, D.jml_setoran, D.tanggal FROM d_simponi as D LEFT JOIN r_satker as S on D.kdsatker = S.kdsatker LEFT JOIN r_unit as U on U.kdunit = D.kdunit WHERE S.kdaktif = 1 AND D.kdunit = 01 AND D.kode_uf = '$jenis' AND S.kdsatker = '$kdsatker' AND D.tanggal BETWEEN '$tanggalawal' AND '$tanggalakhir'
+                        $query  = mysqli_query($konek, "SELECT U.kdunit, S.kdsatker, D.wbws, D.kode_klus, D.kode_billing, D.kode_bp, D.NTPN, D.ntbntp, D.kode_uf, D.jml_setoran, D.tanggal FROM d_simponi as D LEFT JOIN r_satker as S on D.kdsatker = S.kdsatker LEFT JOIN r_unit as U on U.kdunit = D.kdunit WHERE S.kdaktif = 1 AND D.kdunit = '$kdunit' AND D.kode_uf = '$jenis' AND S.kdsatker = '$kdsatker' AND D.tanggal BETWEEN '$tanggalawal' AND '$tanggalakhir'
                             GROUP BY D.tanggal")or die(mysqli_error($konek));
                                 if(mysqli_num_rows($query) == 0){
                                     echo '<tr><td collspan="12" align="center">Tidak ada data!</td></tr>';
@@ -167,6 +193,7 @@
                                             echo '<td><font size="1px">'.$data['kode_uf'].'</font></td>';
                                             echo '<td><font size="1px">'.$data['jml_setoran'].'</font></td>';
                                             echo '<td><font size="1px">'.$data['tanggal'].'</font></td>';
+                                            echo '<td><p><a href="index.php?page=drealisasi&&kdunit='.$data['kdunit'].'&&wbws='.$data['wbws'].'&&id_user='.$data1['id_user'].'"><span class="glyphicon glyphicon-zoom-in"></span></a></p></td>';
                                         echo '</tr>';
                                         $no++;
                                     }
@@ -187,7 +214,7 @@
                                 FROM r_unit AS U
                                 LEFT JOIN r_satker AS S ON S.kdunit = U.kdunit
                                 LEFT JOIN d_simponi AS D ON D.kdsatker = S.kdsatker
-                                WHERE   S.kdaktif = 1")  or die(mysqli_error($konek));
+                                WHERE   S.kdaktif = 1 AND D.kdunit = '$kdunit'")  or die(mysqli_error($konek));
                                 $data = mysqli_fetch_array($querytampil);
                                 echo "".$data['realisasi']."";    
                             }
@@ -197,11 +224,11 @@
                                 $tanggalawal = $_POST['tanggalawal'];
                                 $tanggalakhir = $_POST['tanggalakhir'];
 
-                                $querytampil = mysqli_query($konek, "SELECT SUM(D.jml_setoran) as jumlah
-                                    FROM r_unit AS U
-                                    LEFT JOIN r_satker AS S ON S.kdunit = U.kdunit
-                                    LEFT JOIN d_simponi AS D ON D.kdsatker = S.kdsatker
-                                    WHERE S.kdunit = 01 AND S.kdaktif = 1 AND D.kode_uf = '$jenis' AND S.kdsatker = '$kdsatker' AND D.tanggal BETWEEN '$tanggalawal' AND '$tanggalakhir'")  or die(mysqli_error($konek));
+                                $querytampil = mysqli_query($konek, "SELECT SUM(D.jml_setoran) as realisasi
+                                FROM r_unit AS U
+                                LEFT JOIN r_satker AS S ON S.kdunit = U.kdunit
+                                LEFT JOIN d_simponi AS D ON D.kdsatker = S.kdsatker
+                                WHERE   S.kdaktif = 1 AND D.kdunit = '$kdunit' AND D.kode_uf = '$jenis' AND S.kdsatker = '$kdsatker' AND D.tanggal BETWEEN '$tanggalawal' AND '$tanggalakhir'")  or die(mysqli_error($konek));
                                 $data = mysqli_fetch_array($querytampil);
                                 echo "".$data['jumlah']."";
                             }

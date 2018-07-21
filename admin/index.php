@@ -3,6 +3,10 @@
   include '../config/koneksi.php';
 
   session_start();
+  if(isset($_SESSION['username']))
+
+    {
+    
 
   if(isset($_GET['page'])) $page = $_GET['page'];
     else $page = 'index';
@@ -150,16 +154,23 @@
         <span class="icon-bar"></span>                        
       </button>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
+    <div class="collapse navbar-collapse">
 <!--       <ul>
         <img src="gambar/Biro_Keuangan.png" style="height: 70px; padding-left: 20px; padding-top: 5px; position: fixed;">
       </ul> -->
       <ul class="nav navbar-nav">
-        <li class="nv">
+        <li>
+          <a style="color: #cccccc;">Halaman Admin</a>
+        </li>
+        <li>
+          <a style="color: #cccccc;">|</a>
+        </li>
+
+        <li class="nv" id="myNavbar">
           <a href="index.php?page=index" class="tulisan">Dashboard</a>
         </li>
 
-        <li class="dropdown nv" >
+        <li class="dropdown nv"  id="myNavbar">
           <a class="dropbtn">Profil</a>
           
           <ul style="font-size: 15px;">
@@ -170,7 +181,7 @@
           </ul>
         </li>
 
-        <li class="dropdown">
+        <li class="dropdown"  id="myNavbar">
           <a class="dropbtn">Laporan</a>
           
           <ul style="font-size: 15px;">
@@ -182,13 +193,13 @@
           </ul>
         </li>
 
-        <li>
+        <li  id="myNavbar">
           <a href="index.php?page=menuser">Manajemen User</a>
         </li>
 
       </ul>
       
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right"  id="myNavbar">
         <!-- <?php
           if(isset($_SESSION['id'])){
             include 'logout.php';
@@ -260,7 +271,7 @@
         elseif ($page=='editfaq')
         include ('edit_faq.php');
         elseif ($page=='realisasi')
-        include ('realisasipnbp.php');
+        include ('realisasi.php'); //ini harusnya realisasipnbp.php
         elseif ($page=='persatker')
         include ('lpersatker.php');
         elseif ($page=='tunit')
@@ -294,7 +305,7 @@
   </div>
   <br>
 
-  <footer class="container-fluid" style="">
+  <footer class="container-fluid" style="color: white;">
     
 
     <div class="col-sm-6">
@@ -324,7 +335,7 @@
     }
   </script> -->
   <script src="../dataTables/jQuery-3.3.1/jquery-3.3.1.min.js"></script>
-  <script src="../bootstrap/js/bootstrap.min.js"></script>
+  <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
   <script src="../dataTables/datatables.min.js"></script>
 
   <script type="text/javascript">
@@ -335,3 +346,10 @@
 
 </body>
 </html>
+<?php
+}
+else
+  {
+    header("location:../index.php");
+  }
+?>

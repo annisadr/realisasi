@@ -1,8 +1,3 @@
- <style type="text/css">
-   .isi a, li, p {
-    color: black;
-   }
- </style>
 
  <div class="container">
   <div class="col-sm-7 isi" style="text-align: justify;">
@@ -13,13 +8,13 @@
     Bagian Tata Laksana Keuangan dan Umum
     </h6><br><br>
 
-    <a href="#">
+    <!-- <a href="#">
       <span class="glyphicon glyphicon-edit"></span>
     </a>
     
     <a href="#">
       <span class="glyphicon glyphicon-print"></span>
-    </a>
+    </a> -->
 
     <p>
       Dalam Tahap edit
@@ -31,10 +26,10 @@
   <div class="col-sm-4">
     <h4 align="center"><large>Tugas dan Fungsi per Bagian :</large></h4><hr><br>
     <ol>
-      <li>Bagian Tata Laksana Keuangan dan Umum</li>
-      <li><a href="index.php?page=tf2">Bagian Pembinaan dan Informasi Pengelolaan Keuangan</a></li>
-      <li><a href="index.php?page=tf3">Bagian Perbendaharaan</a></li>
-      <li><a href="index.php?page=tf4">Bagian Evaluasi dan Pelaporan Keuangan</a></li>
+      <li style="color: black;">Bagian Tata Laksana Keuangan dan Umum</li>
+      <li style="color: black;"><a href="index.php?page=tf2">Bagian Pembinaan dan Informasi Pengelolaan Keuangan</a></li>
+      <li style="color: black;"><a href="index.php?page=tf3">Bagian Perbendaharaan</a></li>
+      <li style="color: black;"><a href="index.php?page=tf4">Bagian Evaluasi dan Pelaporan Keuangan</a></li>
     </ol>
   </div>
 </div>

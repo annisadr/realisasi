@@ -7,7 +7,7 @@
 		$query	= mysqli_query($konek, $hapus);
 
 		//echo "Data Telah Terhapus"
-		echo "<br><br><br><br><strong><center>Akun telah di hapus";
+		echo "<br><br><br><br><strong><center><h1><i>Akun telah di hapus</i></h1>";
 		
 		//echo "<meta http-equiv='refresh' content='o; url=../admin/index.php?page=info'>";
 

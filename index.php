@@ -1,17 +1,13 @@
-<!-- <?php
+<!-- tidak bisa 2 login -->
+<?php
   //menyambungkan koneksi
   include 'config/koneksi.php';
 
-  session_start();
-
-  $id_user       = session_id();
-  $id_user       = $_SESSION['id_user'];
-
-  if(isset($_GET['page'])) $page = $_GET['page'];
-    else $page = 'index';
-
+ session_start();
+  if(isset($_SESSION['username']) ){
+    header("Location: halo.php");
+  }
 ?>
- -->
 
 <!DOCTYPE html>
 <html lang="en">

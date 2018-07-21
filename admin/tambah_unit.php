@@ -1,3 +1,13 @@
+<script type="text/javascript">
+    function hanyaAngka(evt) {
+      var charCode = (evt.which) ? evt.which : event.keyCode
+       if (charCode > 31 && (charCode < 48 || charCode > 57))
+
+        return false;
+      return true;
+    }
+</script>
+
 <div class="container">
 <div class="row">
   <h2>Tambah Data Unit<hr></h2>
@@ -21,7 +31,7 @@
     <div class="form-group">
       <label class="control-label col-sm-2" for="kdunit">Kode Unit:</label>
       <div class="col-sm-5">
-        <input type="text" class="form-control" id="kdunit" name="kdunit" placeholder="Kode Unit" required>
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="kdunit" name="kdunit" placeholder="Kode Unit" required>
       </div>
     </div>
 
@@ -35,7 +45,7 @@
     <div class="form-group">
       <label class="control-label col-sm-2" for="kdaktif">Kode Aktif:</label>
       <div class="col-sm-5">
-        <input type="text" class="form-control" id="kdaktif" name="kdaktif" placeholder="Kode Aktif" required>
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="kdaktif" name="kdaktif" placeholder="Kode Aktif" required>
       </div>
     </div>
 

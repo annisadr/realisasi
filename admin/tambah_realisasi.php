@@ -1,3 +1,13 @@
+<script type="text/javascript">
+    function hanyaAngka(evt) {
+      var charCode = (evt.which) ? evt.which : event.keyCode
+       if (charCode > 31 && (charCode < 48 || charCode > 57))
+
+        return false;
+      return true;
+    }
+</script>
+
 <script type="text/javascript" src="../jquery-3.2.1.min.js"></script>
 <div class="container">
 <div class="row">
@@ -20,13 +30,13 @@
           <option selected="selected" value="">--Pilih Salah Satu--</option>
           <?php
           include '../config/koneksi.php';
-            $sel_prov="select * from r_unit";
-            $q=mysqli_query($konek,$sel_prov);
-            while($data_prov=mysqli_fetch_array($q)){
-          ?>
-          <option value="<?php echo $data_prov["kdunit"] ?>"><?php echo $data_prov["kdunit"] ?> | <?php echo $data_prov["nmunit"] ?></option>
-          <?php
-            }
+          $sel_prov="select * from r_unit";
+          $q=mysqli_query($konek,$sel_prov);
+          while($data_prov=mysqli_fetch_array($q)){
+              ?>
+              <option value="<?php echo $data_prov["kdunit"] ?>"><?php echo $data_prov["kdunit"] ?> | <?php echo $data_prov["nmunit"] ?></option>
+              <?php
+          }
           ?>
         </select>
       </div>
@@ -54,7 +64,7 @@
       <label class="control-label col-sm-2" for="tanggal_str">Tanggal Setor</label>
       <label class="control-label col-sm-1">:</label>
       <div class="col-sm-5">
-        <input type="text" class="form-control" id="tanggal_str" name="tanggal_str" placeholder="Ex : 01-Jan-2017">
+        <input type="text" class="form-control" id="tanggal_str" name="tanggal_str" placeholder="Ex : 01-Jan-2017" required>
       </div>
     </div>
 
@@ -70,7 +80,7 @@
       <label class="control-label col-sm-2" for="kode_billing">Kode Billing</label>
       <label class="control-label col-sm-1">:</label>
       <div class="col-sm-5">
-        <input type="number" class="form-control" id="kode_billing" name="kode_billing" placeholder="Kode Billing">
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="kode_billing" name="kode_billing" placeholder="Kode Billing">
       </div>
     </div>
 
@@ -78,7 +88,7 @@
       <label class="control-label col-sm-2" for="kode_bp">Kode Bp</label>
       <label class="control-label col-sm-1">:</label>
       <div class="col-sm-5">
-        <input type="number" class="form-control" id="kode_bp" name="kode_bp" placeholder="Kode BP">
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="kode_bp" name="kode_bp" placeholder="Kode BP">
       </div>
     </div>
 
@@ -94,7 +104,7 @@
       <label class="control-label col-sm-2" for="ntbntp">Nomor Transaski Bank / Nomor Transaksi Pos</label>
       <label class="control-label col-sm-1">:</label>
       <div class="col-sm-5">
-        <input type="number" class="form-control" id="ntbntp" name="ntbntp" placeholder="NTB / NTP">
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="ntbntp" name="ntbntp" placeholder="NTB / NTP">
       </div>
     </div>
 
@@ -126,7 +136,7 @@
       <label class="control-label col-sm-2" for="akun">Akun</label>
       <label class="control-label col-sm-1">:</label>
       <div class="col-sm-5">
-        <input type="number" class="form-control" id="akun" name="akun" placeholder="Akun">
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="akun" name="akun" placeholder="Akun" required>
       </div>
     </div>
 
@@ -134,7 +144,7 @@
       <label class="control-label col-sm-2" for="jml_setoran">Jumlah Setoran</label>
       <label class="control-label col-sm-1">:</label>
       <div class="col-sm-4">
-        <input type="text" class="form-control" id="jml_setoran" name="jml_setoran" placeholder="Ex : 1000000" required>
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="jml_setoran" name="jml_setoran" placeholder="Ex : 1000000" required>
       </div>
     </div>
 
@@ -142,17 +152,17 @@
       <label class="control-label col-sm-2" for="tanggal">Tanggal</label>
       <label class="control-label col-sm-1">:</label>
       <div class="col-sm-3">
-        <input type="date" class="form-control" id="tanggal" name="tanggal" placeholder="Tanggal" required>
+        <input type="date" class="form-control" id="tanggal" name="tanggal" placeholder="Tanggal">
       </div>
     </div>
 
-    <!-- <div class="form-group">
+    <div class="form-group">
       <label class="control-label col-sm-2" for="tahun">Tahun</label>
       <label class="control-label col-sm-1">:</label>
       <div class="col-sm-5">
         <input type="text" class="form-control" id="tahun" name="tahun" placeholder="Tahun">
       </div>
-    </div> -->
+    </div>
 
     <!-- <div class="form-group">
       <label class="control-label col-sm-2" for="akun_3d">akun_3d</label>
@@ -181,30 +191,6 @@
 </div>
 
 <script type="text/javascript">
-  $("#unit").change(function() {
-    var kdunit = $("#unit").val();
-    console.log(kdunit);
-    $.ajax({
-      type: "POST",
-      dataType: "html",
-      url: "ajax_unit.php",
-      data: "kdunit="+kdunit,
-      success: function(msg){
-          // console.log('ASASasAS');
-          jika tidak ada data
-          if(msg == ''){
-              alert('Tidak ada data Unit');
-          }
-          
-          // jika dapat mengambil data,, tampilkan di combo box kota
-          else{
-              $("#kdsatker").html(msg);   
-          }
-          
-      }
-    });
-  });
-</script><script>
     $("#kdunit").change(function(){
     
         // variabel dari nilai combo box provinsi

@@ -11,6 +11,12 @@
   $hasil   = mysqli_query($konek, $edit)or die(mysql_error());
   $data    = mysqli_fetch_array($hasil);
 
+  $id_user = $_GET['id_user'];
+
+  $edit1    = "SELECT * FROM user WHERE id_user = '$id_user'";
+  $hasil1   = mysqli_query($konek, $edit1)or die(mysql_error());
+  $data1    = mysqli_fetch_array($hasil1);
+
 ?>
 <div class="container">
   <div class="col-sm-12">
@@ -114,7 +120,7 @@
       </tr>
   </table>
   <p align="right">&nbsp;&nbsp;
-    <a href="index.php?page=realisasi"><button type="button" class="btn btn-primary">Kembali</button></a>
+    <a href="index.php?page=realisasi&&id_user=<?php echo $data1['id_user']; ?>&&kdunit=<?php echo $data1['kdunit']; ?>"><button type="button" class="btn btn-primary">Kembali</button></a>
     <a href="#"><button type="button" class="btn btn-success">Ubah</button></a>
     <a href="#"><button type="button" class="btn btn-danger">Hapus</button></a>
   </p>

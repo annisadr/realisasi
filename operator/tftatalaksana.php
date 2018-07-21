@@ -32,9 +32,9 @@
     <h4 align="center"><large>Tugas dan Fungsi per Bagian :</large></h4><hr><br>
     <ol>
       <li>Bagian Tata Laksana Keuangan dan Umum</li>
-      <li><a href="index.php?page=tf2">Bagian Pembinaan dan Informasi Pengelolaan Keuangan</a></li>
-      <li><a href="index.php?page=tf3">Bagian Perbendaharaan</a></li>
-      <li><a href="index.php?page=tf4">Bagian Evaluasi dan Pelaporan Keuangan</a></li>
+      <li><a href="index.php?page=tf2&&id_user=<?php echo $data['id_user']; ?>">Bagian Pembinaan dan Informasi Pengelolaan Keuangan</a></li>
+      <li><a href="index.php?page=tf3&&id_user=<?php echo $data['id_user']; ?>">Bagian Perbendaharaan</a></li>
+      <li><a href="index.php?page=tf4&&id_user=<?php echo $data['id_user']; ?>">Bagian Evaluasi dan Pelaporan Keuangan</a></li>
     </ol>
   </div>
 </div>

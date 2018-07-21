@@ -23,7 +23,7 @@
       <label class="control-label col-sm-2" for="kdsatker">Kode Satuan Kerja</label>
       <label class="control-label col-sm-1" for="nmsatker">:</label>
       <div class="col-sm-5">
-        <input type="text" class="form-control" id="kdsatker" name="kdsatker" placeholder="Kode Satuan Kerja" required>
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="kdsatker" name="kdsatker" placeholder="Kode Satuan Kerja" required>
       </div>
     </div>
 
@@ -67,7 +67,7 @@
       <label class="control-label col-sm-2" for="kdlokasi">Kode Lokasi</label>
       <label class="control-label col-sm-1" for="nmsatker">:</label>
       <div class="col-sm-5">
-        <input type="text" class="form-control" id="kdlokasi" name="kdlokasi" placeholder="Kode Lokasi">
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="kdlokasi" name="kdlokasi" placeholder="Kode Lokasi">
       </div>
     </div>
 
@@ -75,7 +75,7 @@
       <label class="control-label col-sm-2" for="kdkabkota">Kode Kabupaten/Kota</label>
       <label class="control-label col-sm-1" for="nmsatker">:</label>
       <div class="col-sm-5">
-        <input type="text" class="form-control" id="kdkabkota" name="kdkabkota" placeholder="Kode Kabupaten/Kota">
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="kdkabkota" name="kdkabkota" placeholder="Kode Kabupaten/Kota">
       </div>
     </div>
 
@@ -83,7 +83,7 @@
       <label class="control-label col-sm-2" for="nomorsp">Nomorsp</label>
       <label class="control-label col-sm-1" for="nmsatker">:</label>
       <div class="col-sm-5">
-        <input type="text" class="form-control" id="nomorsp" name="nomorsp" placeholder="Nomorsp">
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="nomorsp" name="nomorsp" placeholder="Nomorsp">
       </div>
     </div>
 
@@ -91,7 +91,7 @@
       <label class="control-label col-sm-2" for="kdkppn">Kode KPPN</label>
       <label class="control-label col-sm-1" for="nmsatker">:</label>
       <div class="col-sm-5">
-        <input type="text" class="form-control" id="kdkppn" name="kdkppn" placeholder="Kode KPPN">
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="kdkppn" name="kdkppn" placeholder="Kode KPPN">
       </div>
     </div>
     
@@ -99,7 +99,7 @@
       <label class="control-label col-sm-2" for="kdjnssat">Kode Jenis Satuan</label>
       <label class="control-label col-sm-1" for="nmsatker">:</label>
       <div class="col-sm-5">
-        <input type="text" class="form-control" id="kdjnssat" name="kdjnssat" placeholder="Kode Jenis Satuan">
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="kdjnssat" name="kdjnssat" placeholder="Kode Jenis Satuan">
       </div>
     </div>
 
@@ -195,7 +195,7 @@
       <label class="control-label col-sm-2" for="kdaktif">Kode Aktif</label>
       <label class="control-label col-sm-1" for="nmsatker">:</label>
       <div class="col-sm-5">
-        <input type="text" class="form-control" id="kdaktif" name="kdaktif" placeholder="Kode Aktif">
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="kdaktif" name="kdaktif" placeholder="Kode Aktif">
       </div>
     </div>
 
@@ -210,7 +210,7 @@
     <div class="form-group">        
       <div class="col-lg-offset-6 col-lg-5">
         <a href="#"><button type="submit" class="btn btn-success btn-lg">Submit</button></a>
-        <a href="index.php?page=operator"><button type="submit" class="btn btn-basic btn-lg">Cancel</button></a>
+        <a href="index.php?page=persatker"><button type="button" class="btn btn-basic btn-lg">Cancel</button></a>
       </div>
     </div>
   </form>

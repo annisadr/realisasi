@@ -11,6 +11,16 @@ $hasil   = mysqli_query($konek, $edit)or die(mysql_error());
 $data    = mysqli_fetch_array($hasil);
 
 ?>
+
+<script type="text/javascript">
+    function hanyaAngka(evt) {
+      var charCode = (evt.which) ? evt.which : event.keyCode
+       if (charCode > 31 && (charCode < 48 || charCode > 57))
+
+        return false;
+      return true;
+    }
+</script>
   
 <div class="container">
 <div class="row">
@@ -93,7 +103,7 @@ $data    = mysqli_fetch_array($hasil);
       <label class="control-label col-sm-3" for="kode_klus">Kode Klus</label>
       <label class="control-label col-sm-1">:</label>
       <div class="col-sm-4">
-        <input type="number" class="form-control" id="kode_klus" name="kode_klus" placeholder="Kode Klus" value="<?php echo $data['kode_klus']; ?>">
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="kode_klus" name="kode_klus" placeholder="Kode Klus" value="<?php echo $data['kode_klus']; ?>">
       </div>
     </div>
 
@@ -101,7 +111,7 @@ $data    = mysqli_fetch_array($hasil);
       <label class="control-label col-sm-3" for="kode_billing">Kode Billing</label>
       <label class="control-label col-sm-1">:</label>
       <div class="col-sm-4">
-        <input type="number" class="form-control" id="kode_billing" name="kode_billing" placeholder="Kode Billing" value="<?php echo $data['kode_billing']; ?>" required>
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="kode_billing" name="kode_billing" placeholder="Kode Billing" value="<?php echo $data['kode_billing']; ?>" required>
       </div>
     </div>
 
@@ -109,7 +119,7 @@ $data    = mysqli_fetch_array($hasil);
       <label class="control-label col-sm-3" for="kode_bp">Kode Bp</label>
       <label class="control-label col-sm-1">:</label>
       <div class="col-sm-4">
-        <input type="number" class="form-control" id="kode_bp" name="kode_bp" placeholder="Kode Bp" value="<?php echo $data['kode_bp']; ?>" required>
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="kode_bp" name="kode_bp" placeholder="Kode Bp" value="<?php echo $data['kode_bp']; ?>" required>
       </div>
     </div>
 
@@ -125,7 +135,7 @@ $data    = mysqli_fetch_array($hasil);
       <label class="control-label col-sm-3" for="ntbntp">Nomor Transaski Bank / Nomor Transaksi Pos</label>
       <label class="control-label col-sm-1">:</label>
       <div class="col-sm-4">
-        <input type="number" class="form-control" id="ntbntp" name="ntbntp" placeholder="NTB/NTP" value="<?php echo $data['ntbntp']; ?>" required>
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="ntbntp" name="ntbntp" placeholder="NTB/NTP" value="<?php echo $data['ntbntp']; ?>" required>
       </div>
     </div>
 
@@ -155,7 +165,7 @@ $data    = mysqli_fetch_array($hasil);
       <label class="control-label col-sm-3" for="akun">Akun</label>
       <label class="control-label col-sm-1">:</label>
       <div class="col-sm-4">
-        <input type="number" class="form-control" id="akun" name="akun" placeholder="Akun" value="<?php echo $data['akun']; ?>" required>
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="akun" name="akun" placeholder="Akun" value="<?php echo $data['akun']; ?>" required>
       </div>
     </div>
 
@@ -163,7 +173,7 @@ $data    = mysqli_fetch_array($hasil);
       <label class="control-label col-sm-3" for="jml_setoran">Jumlah Setoran</label>
       <label class="control-label col-sm-1">:</label>
       <div class="col-sm-4">
-        <input type="number" class="form-control" id="jml_setoran" name="jml_setoran" placeholder="Jumlah Setoran" value="<?php echo $data['jml_setoran']; ?>" required>
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="jml_setoran" name="jml_setoran" placeholder="Jumlah Setoran" value="<?php echo $data['jml_setoran']; ?>" required>
       </div>
     </div>
 
@@ -179,7 +189,7 @@ $data    = mysqli_fetch_array($hasil);
       <label class="control-label col-sm-3" for="tahun">Tahun</label>
       <label class="control-label col-sm-1">:</label>
       <div class="col-sm-4">
-        <input type="number" class="form-control" id="tahun" name="tahun" placeholder="Tahun" value="<?php echo $data['tahun']; ?>">
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="tahun" name="tahun" placeholder="Tahun" value="<?php echo $data['tahun']; ?>">
       </div>
     </div>
 

@@ -111,11 +111,7 @@
                     
                     if(!isset($_POST['cari'])){
 
-                        $query  = mysqli_query($konek, "SELECT U.kdunit, S.kdsatker, D.wbws, D.kode_klus, D.kode_billing, D.kode_bp, D.NTPN, D.ntbntp, D.kode_uf, D.jml_setoran, D.tanggal
-                            FROM r_satker as S
-                            LEFT join r_unit AS U on S.kdunit = U.kdunit
-                            LEFT JOIN d_simponi as D on D.kdsatker = S.kdsatker
-                            WHERE S.kdaktif = 1")or die(mysqli_error($konek));
+                        $query  = mysqli_query($konek, "SELECT * FROM d_simponi as S LEFT JOIN r_satker as D on D.kdsatker = S.kdsatker LEFT JOIN r_unit as U on U.kdunit = D.kdunit WHERE D.kdaktif = 1")or die(mysqli_error($konek));
                                 if(mysqli_num_rows($query) == 0){
                                     echo '<tr><td collspan="12" align="center">Tidak ada data!</td></tr>';
                                 }
@@ -136,9 +132,9 @@
                                             echo '<td><font size="1px">'.$data['kode_uf'].'</font></td>';
                                             echo '<td><font size="1px">'.$data['jml_setoran'].'</font></td>';
                                             echo '<td><font size="1px">'.$data['tanggal'].'</font></td>';
-                                            echo '<td><p><a href="index.php?page=drealisasi&&kdunit='.$data['kdunit'].'&&wbws='.$data['wbws'].'&&NTPN='.$data['NTPN'].'"><span class="glyphicon glyphicon-zoom-in"></span></a></p>
-                                            <p><a href="index.php?page=erealisasi&&kdunit='.$data['kdunit'].'&&wbws='.$data['wbws'].'&&NTPN='.$data['NTPN'].'"><span class="glyphicon glyphicon-edit"></span></a></p>
-                                            <p><a href="../config/delete_realisasi.php?kdunit='.$data['kdunit'].'&&wbws='.$data['wbws'].'&&NTPN='.$data['NTPN'].'"><span class="glyphicon glyphicon-trash"></span></a></p></td>';
+                                            echo '<td><a href="index.php?page=drealisasi&&kdunit='.$data['kdunit'].'&&wbws='.$data['wbws'].'&&NTPN='.$data['NTPN'].'"><span class="glyphicon glyphicon-zoom-in"></span></a>
+                                            <a href="index.php?page=erealisasi&&kdunit='.$data['kdunit'].'&&wbws='.$data['wbws'].'&&NTPN='.$data['NTPN'].'"><span class="glyphicon glyphicon-edit"></span></a>
+                                            <a href="../config/delete_realisasi.php?kdunit='.$data['kdunit'].'&&wbws='.$data['wbws'].'&&NTPN='.$data['NTPN'].'"><span class="glyphicon glyphicon-trash"></span></a></td>';
                                         echo '</tr>';
                                         $no++;
                                     }
@@ -152,11 +148,11 @@
                         $tanggalawal = $_POST['tanggalawal'];
                         $tanggalakhir = $_POST['tanggalakhir'];
 
-                        $query  = mysqli_query($konek, "SELECT U.kdunit, S.kdsatker, D.wbws, D.kode_klus, D.kode_billing, D.kode_bp, D.NTPN, D.ntbntp, D.kode_uf, D.jml_setoran, D.tanggal
-                            FROM r_satker as S
-                            LEFT join r_unit AS U on S.kdunit = U.kdunit
-                            LEFT JOIN d_simponi as D on D.kdsatker = S.kdsatker
-                            WHERE S.kdaktif = 1 AND D.kdunit = '$kdunit' AND D.kode_uf = '$jenis' AND S.kdsatker = '$kdsatker' AND D.tanggal BETWEEN '$tanggalawal' AND '$tanggalakhir'")or die(mysqli_error($konek));
+                        $query  = mysqli_query($konek, "SELECT *
+FROM d_simponi as D
+LEFT JOIN r_satker as S on D.kdsatker = S.kdsatker
+LEFT JOIN r_unit as U on U.kdunit = D.kdunit
+WHERE S.kdaktif = 1 AND S.kdunit = '$kdunit' AND D.kode_uf = '$jenis' AND S.kdsatker = '$kdsatker' AND D.tanggal BETWEEN '$tanggalawal' AND '$tanggalakhir'")or die(mysqli_error($konek));
                                 if(mysqli_num_rows($query) == 0){
                                     echo '<tr><td collspan="12" align="center">Tidak ada data!</td></tr>';
                                 }
@@ -177,9 +173,9 @@
                                             echo '<td><font size="1px">'.$data['kode_uf'].'</font></td>';
                                             echo '<td><font size="1px">'.$data['jml_setoran'].'</font></td>';
                                             echo '<td><font size="1px">'.$data['tanggal'].'</font></td>';
-                                            echo '<td><p><a href="index.php?page=drealisasi&&kdunit='.$data['kdunit'].'&&wbws='.$data['wbws'].'&&NTPN='.$data['NTPN'].'"><span class="glyphicon glyphicon-zoom-in"></span></a></p>
-                                            <p><a href="index.php?page=erealisasi&&kdunit='.$data['kdunit'].'&&wbws='.$data['wbws'].'&&NTPN='.$data['NTPN'].'"><span class="glyphicon glyphicon-edit"></span></a></p>
-                                            <p><a href="../config/delete_realisasi.php?kdunit='.$data['kdunit'].'&&wbws='.$data['wbws'].'&&NTPN='.$data['NTPN'].'"><span class="glyphicon glyphicon-trash"></span></a></p></td>';
+                                            echo '<td><a href="index.php?page=drealisasi&&kdunit='.$data['kdunit'].'&&wbws='.$data['wbws'].'&&NTPN='.$data['NTPN'].'"><span class="glyphicon glyphicon-zoom-in"></span></a>
+                                            <a href="index.php?page=erealisasi&&kdunit='.$data['kdunit'].'&&wbws='.$data['wbws'].'&&NTPN='.$data['NTPN'].'"><span class="glyphicon glyphicon-edit"></span></a>
+                                            <a href="../config/delete_realisasi.php?kdunit='.$data['kdunit'].'&&wbws='.$data['wbws'].'&&NTPN='.$data['NTPN'].'"><span class="glyphicon glyphicon-trash"></span></a></td>';
                                         echo '</tr>';
                                         $no++;
                                     }

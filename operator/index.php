@@ -2,7 +2,17 @@
   //menyambungkan koneksi
   include '../config/koneksi.php';
 
+  $id_user = $_GET['id_user'];
+  $kdunit = $_GET['kdunit'];
+
+  $edit    = "SELECT * FROM user WHERE id_user = '$id_user'";
+  $hasil   = mysqli_query($konek, $edit)or die(mysql_error());
+  $data    = mysqli_fetch_array($hasil);
+
   session_start();
+  if(isset($_SESSION['username']))
+
+    {
 
   if(isset($_GET['page'])) $page = $_GET['page'];
     else $page = 'index';
@@ -150,33 +160,43 @@
         <span class="icon-bar"></span>                        
       </button>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
+    <div class="collapse navbar-collapse">
 <!--       <ul>
         <img src="gambar/Biro_Keuangan.png" style="height: 70px; padding-left: 20px; padding-top: 5px; position: fixed;">
       </ul> -->
       <ul class="nav navbar-nav">
-        <li class="nv">
-          <a href="index.php?page=index" class="tulisan">Dashboard</a>
+        <li>
+          <a class="nva" style="color: #cccccc;">Halaman Operator</a>
+        </li>
+        <li>
+          <a class="tfevaluasiisan" style="color: #cccccc;">|</a>
         </li>
 
-        <li class="dropdown nv" >
+        <li class="nv" id="myNavbar">
+          <a href="index.php?page=index&&id_user=<?php echo $data['id_user']; ?>&&kdunit=<?php echo $data['kdunit']; ?>" class="tulisan">Dashboard</a>
+        </li>
+
+        <li class="dropdown nv"  id="myNavbar">
           <a class="dropbtn">Profil</a>
           
           <ul style="font-size: 15px;">
             <li class="dropdown-content">
-              <a href="index.php?page=strukturor" class="nv">Struktur Organisasi</a>
-              <a href="index.php?page=tf">Tugas dan Fungsi</a>
+              <a href="index.php?page=strukturor&&id_user=<?php echo $data['id_user']; ?>&&kdunit=<?php echo $data['kdunit']; ?>" class="nv">Struktur Organisasi</a>
+              <a href="index.php?page=tf&&id_user=<?php echo $data['id_user']; ?>&&kdunit=<?php echo $data['kdunit']; ?>">Tugas dan Fungsi</a>
             </li>
           </ul>
         </li>
 
-        <li>
-          <a href="index.php?page=realisasi">Realisasi PNBP</a>
+        <li id="myNavbar">
+          <a href="index.php?page=realisasi&&id_user=<?php echo $data['id_user']; ?>&&kdunit=<?php echo $data['kdunit']; ?>">Realisasi PNBP</a>
         </li>
 
+        <li id="myNavbar">
+          <a href="index.php?page=profil&&id_user=<?php echo $data['id_user']; ?>&&kdunit=<?php echo $data['kdunit']; ?>">Manajemen User</a>
+        </li>
       </ul>
       
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right" id="myNavbar">
         <!-- <?php
           if(isset($_SESSION['id'])){
             include 'logout.php';
@@ -188,7 +208,7 @@
 
         <li>
           <a href="../config/logout.php">
-            <!-- <img src="#" alt="Avatar" class="avatar"> -->Logout <span class="glyphicon glyphicon-log-out"></span>
+            <!-- <img src="#" alt="Avatar" class="avatar"> -->Logout <span class="glyphicon glyphicon-log-out"> 
           </a>
         </li>
       </ul>
@@ -196,8 +216,9 @@
   </div>
 </nav>
 
-<div class="container-fluid">    
+<div class="container-fluid">
     <div class="row">
+      <input type="hidden" name="id_user" value="<?php echo $id_user?>">
       <?php
         if ($page=='index')
         include ('dashboard.php');
@@ -248,7 +269,7 @@
         elseif ($page=='editfaq')
         include ('edit_faq.php');
         elseif ($page=='realisasi')
-        include ('realisasipnbp.php');
+        include ('realisasi.php'); //harusnya realisasipnbp.php
         elseif ($page=='persatker')
         include ('lpersatker.php');
         elseif ($page=='tunit')
@@ -269,6 +290,8 @@
         include ('detail_unit.php');
         elseif ($page=='drealisasi')
         include ('detail_realisasi.php');
+        elseif ($page=='profil')
+        include ('profil.php');
       ?>
     </div>
   </div>
@@ -304,7 +327,7 @@
     }
   </script> -->
   <script src="../dataTables/jQuery-3.3.1/jquery-3.3.1.min.js"></script>
-  <script src="../bootstrap/js/bootstrap.min.js"></script>
+  <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
   <script src="../dataTables/datatables.min.js"></script>
 
   <script type="text/javascript">
@@ -315,3 +338,10 @@
 
 </body>
 </html>
+<?php
+}
+else
+  {
+    header("location:../index.php");
+  }
+?>

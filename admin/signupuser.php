@@ -2,6 +2,15 @@
     include "../config/koneksi.php";
 ?>
 <script type="text/javascript" src="../jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    function hanyaAngka(evt) {
+      var charCode = (evt.which) ? evt.which : event.keyCode
+       if (charCode > 31 && (charCode < 48 || charCode > 57))
+
+        return false;
+      return true;
+    }
+</script>
 
 <div class="container">
 <div class="row">
@@ -10,7 +19,7 @@
     <a href="index.php?page=menuser">Manajamen User</a> > Tambah
   </h6><br><br>
   <p><i>Please, fill your information with correctly!</i></p>
-  <form action="../config/proses_addoperator.php" method="POST" class="form-horizontal">
+  <form action="../config/proses_addoperator.php" method="POST" class="form-horizontal" enctype="multipart/form-data">
     
     <!-- <div class="form-group">
       <label class="control-label col-sm-3" for="id">ID:</label>
@@ -20,7 +29,7 @@
     </div> -->
 
     <ol class="breadcrumb" style="background-color: #cceeff;">
-      <h5>DATA OPERATOR</h5>
+      <h5>DATA USER</h5>
     </ol>
 
     <div class="form-group">
@@ -31,73 +40,14 @@
       </div>
     </div>
 
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="alamat">Alamat</label>
-      <label class="control-label col-sm-1">:</label>
-      <div class="col-sm-9">          
-        <textarea class="form-control" id="alamat" rows="2" name="alamat" placeholder="Alamat" required></textarea>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="alamat"></label>
-      <label class="control-label col-sm-1"></label>
-      <div class="col-sm-1">
-        <input type="text" class="form-control" id="rt" name="rt" placeholder="RT">
-      </div>
-      <div class="col-sm-1">
-        <input type="text" class="form-control" id="rw" name="rw" placeholder="RW">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="kelurahan">Kelurahan</label>
-      <label class="control-label col-sm-1">:</label>
-      <div class="col-sm-3">
-        <input type="text" class="form-control" id="kelurahan" name="kelurahan" style="text-transform: capitalize;" placeholder="Kelurahan">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="kecamatan">Kecamatan</label>
-      <label class="control-label col-sm-1">:</label>
-      <div class="col-sm-3">
-        <input type="text" class="form-control" id="kecamatan" name="kecamatan" style="text-transform: capitalize;" placeholder="Kecamatan">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="provinsi">Provinsi</label>
-      <label class="control-label col-sm-1">:</label>
-      <div class="col-sm-3">
-        <input type="text" class="form-control" id="provinsi" name="provinsi" style="text-transform: capitalize;" placeholder="Provinsi">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="kabkota">Kabupaten/Kota</label>
-      <label class="control-label col-sm-1">:</label>
-      <div class="col-sm-3">
-        <input type="text" class="form-control" id="kabkota" name="kabkota" style="text-transform: capitalize;" placeholder="Kabupaten">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="negara">Negara</label>
-      <label class="control-label col-sm-1">:</label>
-      <div class="col-sm-5">
-        <input type="text" class="form-control" id="negara" name="negara" style="text-transform: capitalize;" placeholder="Negara">
-      </div>
-    </div>
-
     <div class="form-group" required>
       <label class="control-label col-sm-2" for="kontak">Kontak</label>
       <label class="control-label col-sm-1">:</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" id="no_tlp" name="no_tlp" placeholder="Nomor Telepon">
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="no_tlp" name="no_tlp" placeholder="Nomor Telepon">
       </div>
       <div class="col-sm-3">
-        <input type="text" class="form-control" id="no_hp" name="no_hp" placeholder="Nomor Handphone">
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="no_hp" name="no_hp" placeholder="Nomor Handphone">
       </div>
       <div class="col-sm-3">
         <input type="text" class="form-control" id="email" name="email" placeholder="Alamat E-mail" required>
@@ -108,7 +58,7 @@
       <label class="control-label col-sm-2" for="nip">NIP</label>
       <label class="control-label col-sm-1">:</label>
       <div class="col-sm-4">
-        <input type="number" class="form-control" id="nip" name="nip" placeholder="Nomor Induk Pegawai" required>
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="nip" name="nip" placeholder="Nomor Induk Pegawai" required>
       </div>
     </div>
 
@@ -124,7 +74,7 @@
         </select>
       </div>
       <div class="col-sm-3">
-        <input type="number" class="form-control" id="no_identitas" name="no_identitas" placeholder="Nomor Identitas">
+        <input onkeypress="return hanyaAngka(event)" type="text" class="form-control" id="no_identitas" name="no_identitas" placeholder="Nomor Identitas">
       </div>
     </div><br><br>
 
@@ -180,7 +130,7 @@
       <label class="control-label col-sm-2" for="password">Password</label>
       <label class="control-label col-sm-1">:</label>
       <div class="col-sm-3">
-        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
       </div>
     </div>
 
@@ -196,13 +146,13 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label class="control-label col-sm-2" for="level">Foto</label>
       <label class="control-label col-sm-1">:</label>
-      <div class="col-sm-6">
-        <input type="file" name="fileToUploadFoto" id="fileToUploadFoto">
+      <div class="control-label col-sm-6">
+        <input type="file" name="fileToUpload" id="fileToUpload" required>
       </div>
-    </div>
+    </div> -->
     
     <div class="form-group">        
       <div class="col-lg-12">

@@ -3,7 +3,8 @@
 include '../config/koneksi.php';
 
 $id_user  = $_GET['id_user'];
-$edit    = "SELECT id_user, nama, alamat, rt, rw, kelurahan, kecamatan, provinsi, kabkota, negara, no_tlp, no_hp, email, nip, jenis_identitas, no_identitas, kdunit, kdsatker, username, password, level FROM user WHERE id_user = '$id_user'";
+
+$edit    = "SELECT id_user, nama, no_tlp, no_hp, email, nip, jenis_identitas, no_identitas, kdunit, kdsatker, username, password, level FROM user WHERE id_user = '$id_user'";
 $hasil   = mysqli_query($konek, $edit)or die(mysql_error());
 $data    = mysqli_fetch_array($hasil);
 
@@ -11,12 +12,16 @@ $data    = mysqli_fetch_array($hasil);
   
 <div class="container">
 <div class="row">
-  <h2>Edit Data FAQ<hr></h2>
+  <h2>Edit Data User<hr></h2>
   <h6>
     <a href="index.php?page=menuser">Manajemen User</a> > Edit data User
   </h6><br><br>
   <p><i>Please, fill your information with correctly!</i></p>
-  <form action="../config/proses_edituser.php" method="POST" class="form-horizontal">
+  <form action="../config/proses_edituser.php" method="POST" class="form-horizontal" enctype="multipart/form-data">
+
+    <ol class="breadcrumb" style="background-color: #cceeff;">
+      <h5>DATA USER</h5>
+    </ol>
 
     <input type="hidden" name="id_user" value="<?php echo $id_user ?>">
     
@@ -25,65 +30,6 @@ $data    = mysqli_fetch_array($hasil);
       <label class="control-label col-sm-1">:</label>
       <div class="col-sm-5">
         <input type="text" class="form-control" id="nama" name="nama" style="text-transform: capitalize;" placeholder="Nama Panjang" value="<?php echo $data['nama']; ?>" required>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="alamat">Alamat</label>
-      <label class="control-label col-sm-1">:</label>
-      <div class="col-sm-9">
-        <input type="text" class="form-control"id="alamat" rows="2" name="alamat" placeholder="Alamat" value="<?php echo $data['alamat']; ?>" required>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="almt"></label>
-      <label class="control-label col-sm-1"></label>
-      <div class="col-sm-1">
-        <input type="text" class="form-control" id="rt" name="rt" placeholder="RT" value="<?php echo $data['rt']; ?>">
-      </div>
-      <div class="col-sm-1">
-        <input type="text" class="form-control" id="rw" name="rw" placeholder="RW" value="<?php echo $data['rw']; ?>">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="kelurahan">Kelurahan</label>
-      <label class="control-label col-sm-1">:</label>
-      <div class="col-sm-3">
-        <input type="text" class="form-control" id="kelurahan" name="kelurahan" style="text-transform: capitalize;" placeholder="Kelurahan" value="<?php echo $data['kelurahan']; ?>">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="kecamatan">Kecamatan</label>
-      <label class="control-label col-sm-1">:</label>
-      <div class="col-sm-3">
-        <input type="text" class="form-control" id="kecamatan" name="kecamatan" style="text-transform: capitalize;" placeholder="Kecamatan" value="<?php echo $data['kecamatan']; ?>">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="provinsi">Provinsi</label>
-      <label class="control-label col-sm-1">:</label>
-      <div class="col-sm-3">
-        <input type="text" class="form-control" id="provinsi" name="provinsi" style="text-transform: capitalize;" placeholder="Provinsi" value="<?php echo $data['provinsi']; ?>">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="kabkota">Kabupaten/Kota</label>
-      <label class="control-label col-sm-1">:</label>
-      <div class="col-sm-3">
-        <input type="text" class="form-control" id="kabkota" name="kabkota" style="text-transform: capitalize;" placeholder="Kabupaten" value="<?php echo $data['kabkota']; ?>">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="negara">Negara</label>
-      <label class="control-label col-sm-1">:</label>
-      <div class="col-sm-5">
-        <input type="text" class="form-control" id="negara" name="negara" style="text-transform: capitalize;" placeholder="Negara" value="<?php echo $data['negara']; ?>">
       </div>
     </div>
 
@@ -134,7 +80,7 @@ $data    = mysqli_fetch_array($hasil);
       <label class="control-label col-sm-2" for="select">Unit</label>
       <label class="control-label col-sm-1">:</label>
       <div class="col-sm-4">
-        <select class="form-control" id="kdunit" name="kdunit">
+        <select class="form-control" id="kdunit" name="kdunit" disabled>
           <?php
           $kdunit = $data['kdunit'];
           include '../config/koneksi.php';
@@ -155,17 +101,20 @@ $data    = mysqli_fetch_array($hasil);
       <label class="control-label col-sm-1">:</label>
       <div class="col-sm-4">
       <select class="form-control" id="kdsatker" name="kdsatker">
-          <?php 
-          // echo $data['kdsatker'];
-          $kodesatker = $data['kdsatker'];
-
-          $select = "SELECT * FROM r_satker WHERE kdsatker='$kodesatker'";
-          $a      = mysqli_query($konek,$select);
-          $data   = mysqli_fetch_array($a);
-
-        ?>
-          <option selected="selected" <?php if($data['kdsatker'] == '$data["kdsatker"]'){ echo 'selected'; } ?>><?php echo $data['kdsatker']; ?> | <?php echo $data["nmsatker"] ?></option>
-                            
+        <option selected="selected" value="">--Pilih Salah Satu--</option>
+          <?php
+              $nmsatker = "SELECT S.kdsatker, S.nmsatker FROM r_unit AS U
+              LEFT JOIN r_satker AS S ON S.kdunit = U.kdunit WHERE S.kdunit = '$kdunit' AND S.kdaktif = 1 ORDER BY nmsatker";
+              $querynmsatker = mysqli_query($konek,$nmsatker);
+              while ($datanmsatker = mysqli_fetch_array($querynmsatker)) {
+              ?>
+          <option value="<?php echo $datanmsatker['kdsatker'] ?>">
+              <?php echo $datanmsatker["kdsatker"] ?> | 
+              <?php echo $datanmsatker["nmsatker"] ?>
+          </option>
+              <?php
+                  }
+              ?>     
         </select>
       </div>
     </div>
@@ -180,7 +129,7 @@ $data    = mysqli_fetch_array($hasil);
     include '../config/koneksi.php';
 
     $id_user  = $_GET['id_user'];
-    $edit    = "SELECT id_user, nama, alamat, rt, rw, kelurahan, kecamatan, provinsi, kabkota, negara, no_tlp, no_hp, email, nip, jenis_identitas, no_identitas, kdunit, kdsatker, username, password, level FROM user WHERE id_user = '$id_user'";
+    $edit    = "SELECT id_user, nama, no_tlp, no_hp, email, nip, jenis_identitas, no_identitas, kdunit, kdsatker, username, password, level FROM user WHERE id_user = '$id_user'";
     $hasil   = mysqli_query($konek, $edit)or die(mysql_error());
     $data    = mysqli_fetch_array($hasil);
 
@@ -207,7 +156,15 @@ $data    = mysqli_fetch_array($hasil);
       <div class="col-sm-2">
         <input type="text" class="form-control" id="level" name="level" disabled value="<?php echo $data['level']; ?>" required>
       </div>
-    </div><br><br>
+    </div>
+
+    <!-- <div class="form-group">
+      <label class="control-label col-sm-2" for="level">Foto</label>
+      <label class="control-label col-sm-1">:</label>
+      <div class="control-label col-sm-6">
+        <input type="file" name="fileToUpload" id="fileToUpload">
+      </div>
+    </div> --><br><br>
     
     <div class="form-group col-sm-12">
       <p align="right">&nbsp;&nbsp;
@@ -219,6 +176,50 @@ $data    = mysqli_fetch_array($hasil);
   </form>
 </div>
 </div>
+
+<!-- Modal -->
+<!-- <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog"> -->
+
+      <!-- Modal content-->
+      <!-- <div class="modal-content" style="padding-top: 40px;">
+          <div class="modal-header" style="background-color:#3bacd6";>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            
+            <h4 class="modal-title" align="center"><b>Ubah Password</b></h4>
+          </div>
+          <div class="modal-body">
+            <form action="../config/ubah_password.php" class="form-horizontal" method="POST">
+              <div class="form-group">
+                <label class="col-sm-1"></label>
+                <label class="col-sm-4">Password</label>
+                <label class="col-sm-1">:</label>
+                  <div class="col-sm-5">
+                      <input type="password" class="form-control" name="password" placeholder="Password" required>
+                  </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-1"></label>
+                <label class="col-sm-4">Konfirmasi Password</label>
+                <label class="col-sm-1">:</label>
+                  <div class="col-sm-5">
+                      <input type="password" class="form-control" name="kpassword" placeholder="Konfirmasi Password" required>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="control-label col-sm-5"></label>
+                  <div class="col-sm-6" align="right">
+                      <button class="btn btn-primary">Simpan</button>
+                  </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            
+          </div>
+      </div>
+    </div>
+  </div> -->
 
 <script>
     $("#kdunit").change(function(){

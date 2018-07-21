@@ -14,7 +14,7 @@
 
  if($data){
   echo "<h1><strong><center>Data Unit Sudah ditambahkan</h1>";
-  echo '<META HTTP-EQUIV="REFRESH" CONTENT = "1; URL=../admin/index.php?page=lpnbp">'; 
+  echo '<META HTTP-EQUIV="REFRESH" CONTENT = "1; URL=../admin/index.php?page=lpnbp&&id_user='.$data['id_user'].'&&kdunit='.$data['kdunit'].'">'; 
  }
 
 ?>

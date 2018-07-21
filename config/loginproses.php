@@ -30,7 +30,7 @@ if($jlhrecord > 0){
 			header('Location:../admin/index.php?page=index');
 		}
 		elseif ($level == Operator){
-			header('Location:../operator/index.php?page=index');
+			header('Location:../operator/index.php?page=index&&id_user='.$data['id_user'].'&&kdunit='.$data['kdunit'].'');
 		}
 }
 

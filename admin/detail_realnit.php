@@ -13,10 +13,16 @@
 ?>
 
 <div class="col-sm-12">
-    <div class="well">
-    	<h5><a href="index.php?page=lpnbp">Realisasi PNBP</a> /
-    		<?php echo $data['nmunit'];?></h5>      
+    <div class="container">
+        <div class="module-head">
+            <h3><large>REALISASI PNBP PER - UNIT</large></h3><hr><br>
+        </div><br>
+        <div class="well">
+            <h5><a href="index.php?page=lpnbp">Realisasi PNBP Per - Unit</a> /
+                <?php echo $data['nmunit'];?></h5>      
+        </div>
     </div>
+
     <!-- <div class="container">
         <a href="index.php?page=su" class="btn btn-primary btn-lg">
         <span class="glyphicon glyphicon-plus"></span> Tambah Data 
@@ -80,7 +86,9 @@
     		</div>
     		<div class="form-group">
     			<div class="col-sm-3" align="right">
-                    <button type="submit" class="btn btn-primary" name="cari">Print</button>
+                    <a href="print_realnit.php&&kdunit=<?php echo $data['kdunit']; ?>">
+                        <button type="button" class="btn btn-primary">Print</button>
+                    </a>
                 </div>
     			<div class="col-sm-7" align="right">
     				<button type="submit" class="btn btn-primary" name="cari">Search</button>

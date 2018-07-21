@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Print Faq</title>
+
   <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,8 +14,27 @@
 
 <body onload="window.print()">
 
-<div class="row">
-        <table class="table table-striped table-hover table-responsive">
+<div class="container">
+        <table class="table table-bordered table-striped table-hover table-responsive" align="center">
+        	<div align="LEFT">
+        		<p>
+        			<img class="center" src="../gambar/logo.png" height="100" style=" float: left; padding-right: 50px;">
+        			<p style="padding-top: 20px;"><b style="font-size: 20px;">Kementerian Pekerjaan Umum dan Perumahan Rakyat<br>Biro Keuangan</b>
+        			<br>Jl. Pattimura 20, Jakarta Selatan (12110)</p>
+        		</p>
+        	</div>
+        	<!-- <p align="right">Jakarta, <?php
+				date_default_timezone_set('Asia/Jakarta');
+				echo date("d M Y");
+				?>
+			</p> --><br><br><br>
+        	<h3 align="center">Laporan Realisasi PNBP Per - Unit</h3><br>
+        	<!-- <p>
+        		TIPE LAPORAN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Laporan Realisasi PNBP Per - Unit
+        	</p>
+        	<p>
+        		TIPE LAPORAN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Laporan Realisasi PNBP Per - Unit
+        	</p> -->
             <thead>
 				<tr style="font-size: 12px; background-color: #d9d9d9; border-color: black;">
 					<th style="text-align: center;">NO</th>
@@ -24,7 +43,6 @@
 					<th style="text-align: center;">NAMA UNIT</th>
 					<th style="text-align: center;">KODE AKTIF</th>
 					<th style="text-align: center;">JUMLAH SETORAN</th>
-					<th style="text-align: center;">ACTION</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -49,20 +67,17 @@
 								echo '<td><font size="2px">'.$no_urut.'</font></td>';
 								echo '<td><font size="2px">'.$data['kdunit'].'</font></td>';
 								echo '<td><font size="2px">'.$data['baes1'].'</font></td>';
-								echo '<td><font size="2px"><a href = "index.php?page=drealnit&&kdunit='.$data['kdunit'].'">'.$data['nmunit'].'</a></font></td>';
+								echo '<td><font size="2px"><a href = "#">'.$data['nmunit'].'</a></font></td>';
 								echo '<td><font size="2px">'.$data['kdaktif'].'</font></td>';
 								echo '<td><font size="2px">'.$data['realisasi'].'</font></td>';
-								echo '<td><a href="index.php?page=dunit&&kdunit='.$data['kdunit'].'"><span class="glyphicon glyphicon-zoom-in"></span></a>&nbsp;&nbsp;&nbsp;
-                                <a href="index.php?page=eunit&&kdunit='.$data['kdunit'].'"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;&nbsp;
-                                <a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>';
 							echo '</tr>';
 							$no++;
 						}
 					}
 				?>
 				<tr>
-					<td colspan='5' style="padding-left: 50px;">Total</td>
-					<td align="center">
+					<td colspan='5' style="padding-left: 50px; background-color: #d9d9d9;">Total</td>
+					<td align="center"><b>
 						<?php
 
 							$querytampil = mysqli_query($konek, "SELECT SUM(D.jml_setoran) as realisasi
@@ -72,12 +87,18 @@
 								WHERE	S.kdaktif = 1")or die(mysqli_error($konek));
 							$data = mysqli_fetch_array($querytampil);
 							echo "".$data['realisasi']."";
-						?>
+						?></b>
 					</td>
-					<td colspan='3' style="padding-left: 50px;"></td>
+					
 				</tr>	
 			</tbody>
-        </table>
+        </table><br><br><br>
+
+			<div class="col-sm-12" align="right">
+				<p align="right" style="padding-right: 50px;">Kepala Biro Keuangan</p><br><br><br><br><br>
+				<p align="right" style="padding-right: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( Drs. Praptomo Widodo )</p>
+			</div>
+
       </div>
 
 </body>

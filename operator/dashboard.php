@@ -3,18 +3,28 @@
       <div class="module-head">
         <h3><large>DASHBOARD</large></h3><hr><br>
       </div>
-      
+      <p align="right">
+        <?php
+        date_default_timezone_set('Asia/Jakarta');
+        echo "<b>Login hari ini:</b> " . date("d/m/Y | h:i:s");
+        ?>
+      </p>
+
+      <p align="left">
+        Username : </span> <?php echo $data['nama'];?>
+      </p>
+
       <h1><center><i><b>Selamat Datang di Halaman Operator</b></i></center></h1><br>
 
       <div class="row">
         <div class="col-sm-12">
           <div class="well">
-            <a href="#">
+            <!-- <a href="#">
               <span class="glyphicon glyphicon-edit"></span>
             </a>
             <a href="#">
               <span class="glyphicon glyphicon-print"></span>
-            </a>
+            </a> -->
             <script src="../js/jquery.min.js" type="text/javascript"></script>
             <script src="../js/highcharts.js" type="text/javascript"></script>
             <script type="text/javascript" >

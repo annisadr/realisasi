@@ -1,5 +1,19 @@
 <?php
 
+  error_reporting(0);
+
+  include '../config/koneksi.php';
+
+  $kdunit = $_GET['kdunit'];
+
+  $edit    = "SELECT * FROM r_unit WHERE kdunit = '$kdunit'";
+  $hasil   = mysqli_query($konek, $edit)or die(mysql_error());
+  $data    = mysqli_fetch_array($hasil);
+
+?>
+
+<?php
+
 
 include ('../config/koneksi.php');
 
@@ -7,7 +21,7 @@ $query = "SELECT U.kdunit, U.baes1, U.nmunit AS nmunit, U.kdaktif, sum(D.jml_set
             FROM r_satker as S
             LEFT join r_unit AS U on S.kdunit = U.kdunit
             LEFT JOIN d_simponi as D on D.kdsatker = S.kdsatker
-            WHERE S.kdaktif = 1
+            WHERE S.kdaktif = 1 AND S.kdunit = '$kdunit'
             GROUP BY U.kdunit";
 // $query = "SELECT S.nmunit AS nmunit, sum(D.jml_setoran) AS realisasi FROM r_satker as S
 //                     LEFT join r_unit AS U on S.kdunit = U.kdunit
@@ -57,7 +71,7 @@ $chart_data = substr($chart_data, 0, -2);
 	Morris.Line({
 		element : 'chart',
 		data:[<?php echo $chart_data; ?>],
-		xkey:'year',
+		xkey:'month',
 		ykeys:['sekjen'],
 		labels:['Sekreatriat Jenderal'],
 		hideHover:'auto'
