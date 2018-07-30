@@ -7,7 +7,7 @@
         </a>
     </div><br>
 
-    <a href="print_perunit.php">
+    <a href="print_perunit.php" target ="_blank">
       <span class="glyphicon glyphicon-print"></span>
     </a>
 

@@ -1,55 +1,58 @@
- <style type="text/css">
-   .isi a, li, p {
-    color: black;
-   }
- </style>
 
- <div class="container">
-  <div class="col-sm-7 isi" style="text-align: justify;">
-    <h3><large>TUGAS & FUNGSI BIRO KEUANGAN</large></h3><hr><br>
+<?php
 
-    <a href="#">
-      <span class="glyphicon glyphicon-edit"></span>
-    </a>
+  error_reporting(0);
+
+  include '../config/koneksi.php';
+
+  $id_user = $_GET['id_user'];
+  $kdunit = $_GET['kdunit'];
+
+  $edit    = "SELECT * FROM user WHERE id_user = '$id_user'";
+  $hasil   = mysqli_query($konek, $edit)or die(mysql_error());
+  $data1    = mysqli_fetch_array($hasil);
+
+?>
+<div class="container">
+  <div class="module-head">
+      <h3><large>TUGAS DAN FUNGSI</large></h3><hr><br>
+  </div>
     
-    <a href="#">
-      <span class="glyphicon glyphicon-print"></span>
-    </a>
+    <hr>
+     <form class="form-horizontal" method="POST">
+          <?php
 
-    <p>
-      Berdasarkan Permen PUPR No. 15/PRT/M/2015 tentang Organisasi dan Tata Kerja Kementerian Pekerjaan Umum dan Perumahan Rakyat, Biro Keuangan adalah salah satu unit eselon II yang berada di lingkungan Sekretariat Jenderal. Tugas dan fungsi Biro Keuangan dilaksanakan oleh 4 (empat) bagian, yaitu Bagian Tata Laksana Keuangan dan Umum, Bagian Pembinaan dan Informasi Pengelolaan Keuangan, Bagian Perbendaharaan, dan Bagian Evaluasi dan Pelaporan Keuangan. Setiap bagian mempunyai 3 (tiga) Subbagian yang melaksanakan sebagian tugas dari masing-masing bagian.
-    </p><br>
-    <p>
-      Tugas pokok Biro Keuangan berdasarkan Permen tersebut adalah untuk melaksanakan pembinaan dan penyusunan tata laksana keuangan, perbendaharaan, akuntansi, penatausahaan Pendapatan Negara Bukan Pajak dan Badan Layanan Umum, Laporan Keuangan Kementerian serta penetapan pejabat perbendaharaan satuan kerja.
-    </p><br>
+            include '../config/koneksi.php';
 
-    <p>
-      Adapun untuk melaksanakan tugas tersebut, Biro Keuangan menyelenggarakan beberapa fungsi :
-    </p>
-
-    <ol type="i" style="word">
-      <li>Pembinaan tata laksana keuangan dan perbendaharaan;</li>
-      <li>Pembinaan dan pelaksanaan sistem akuntansi;</li>
-      <li>Pembinaan penatausahaan Penerimaan Negara Bukan Pajak dan Badan Layanan Umum;</li>
-      <li>Penyusunan tata laksana keuangan dan sistem akuntansi;</li>
-      <li>Pelaksanaan pemantauan dan evaluasi pengelolaan keuangan;</li>
-      <li>Pembinaan dan penatausahaan penetapan pejabat perbendaharaan satuan kerja;</li>
-      <li>Penatausahaan hasil pemeriksaan;</li>
-      <li>Penyusunan laporan keuangan Sekretariat Jenderal;</li>
-      <li>Penyusunan laporan keuangan Kementerian; dan</li>
-      <li>Pelaksanaan urusan tata usaha dan rumah tangga biro.</li>
-    </ol><br><br>
+            $query = mysqli_query($konek, "SELECT * FROM tugasdanfungsi ORDER BY id_tusi DESC")or die(mysqli_error());
+                    if(mysqli_num_rows($query) == 0){ 
+                      echo '<center><i>';
+                      echo 'Belum ada berita!';
+                      echo '</i></center>';    
+                    }
+                      else
+                    { 
+                      $no = 1;        
+                      while($data = mysqli_fetch_array($query)){  
+                        echo '<div class="col-md-12">';
+                        echo '<div class="thumbnail">';
+                        echo '<br>';
+                        echo '<p><b>'.$data['judul_tusi'].'</b></p>';
+                        echo '<hr>';
+                        echo '<p align="justify">'.substr($data['tugasdanfungsi'], 0,300).'&nbsp;<a data-toggle="tooltip" data-placement="bottom" title="Baca selanjutnya" href=index.php?page=lihattusi&&id_tusi='.$data['id_tusi'].'&&id_user='.$data1['id_user'].'&&kdunit='.$data1['kdunit'].'>baca selanjutnya ..</a></p>';
+                        echo '<p align="right"><i><font size="1px">'.$data['tgl_tusi'].'&nbsp;&nbsp;&nbsp;</font></i></p>';
+                        echo '</div>';
+                        echo '</div>';
+                        $no++;  
+                      }
+                    }
+              
+                ?>
+                    
+        </tbody>
+      </table>
+    </form>
+   
+  </div>
 </div>
-
-<div class="col-sm-1"></div>
-
-<div class="col-sm-4">
-  <h4 align="center"><large>Tugas dan Fungsi per Bagian :</large></h4><hr><br>
-  <ol>
-    <li><a href="index.php?page=tf1&&id_user=<?php echo $data['id_user']; ?>">Bagian Tata Laksana Keuangan dan Umum</a></li>
-    <li><a href="index.php?page=tf2&&id_user=<?php echo $data['id_user']; ?>">Bagian Pembinaan dan Informasi Pengelolaan Keuangan</a></li>
-    <li><a href="index.php?page=tf3&&id_user=<?php echo $data['id_user']; ?>">Bagian Perbendaharaan</a></li>
-    <li><a href="index.php?page=tf4&&id_user=<?php echo $data['id_user']; ?>">Bagian Evaluasi dan Pelaporan Keuangan</a></li>
-  </ol>
-</div>
-</div>
+  

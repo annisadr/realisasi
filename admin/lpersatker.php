@@ -9,11 +9,9 @@
             </a>
         </div>
         <div class="col-sm-9" align="right">
-            <button type="button" class="btn" name="print">
-                <a href="print_persatker.php&&kdunit=<?php echo $data['kdunit']; ?>">
-                  <span class="glyphicon glyphicon-print"></span> Print
-                </a>
-            </button>
+            <a href="print_persatker.php" class="btn btn-info btn-md" target ="_blank">
+                <span class="glyphicon glyphicon-print"></span> Print
+            </a>
         </div><br><br><br><br>
         <div class="col-sm-12" align="center">
             <form class="form-horizontal" action="" method="POST">
@@ -68,7 +66,10 @@
 
                     if(!isset($_POST['cari'])){
 
-                        $query = mysqli_query($konek, "SELECT S.kdsatker, S.nmsatker, S.kdunit, S.kdaktif, sum(D.jml_setoran) AS realisasi FROM r_satker as S LEFT JOIN r_unit AS U on U.kdunit = S.kdunit LEFT JOIN d_simponi AS D on D.kdsatker = S.kdsatker WHERE S.kdaktif = 1 GROUP BY S.kdsatker") or die(mysqli_error($konek));
+
+                        $query = mysqli_query($konek, "SELECT S.kdsatker, S.nmsatker, S.kdunit, S.kdaktif, sum(D.jml_setoran) AS realisasi FROM d_simponi AS D LEFT JOIN r_satker AS S ON S.kdsatker = D.kdsatker LEFT JOIN r_unit AS U on U.kdunit = S.kdunit WHERE S.kdaktif = 1 GROUP BY S.kdsatker") or die(mysqli_error($konek));
+
+
 
 
                                 if(mysqli_num_rows($query) == 0){
@@ -78,6 +79,7 @@
                             $no = 1;
                             while ($data = mysqli_fetch_array($query)) {
                                 $no_urut++;
+                                
                                 echo '<tr align="center">';
                                     echo '<td><font size="2px">'.$no_urut.'</font></td>';
                                     echo '<td><font size="2px">'.$data['kdsatker'].'</font></td>';
@@ -98,7 +100,7 @@
                         $kdunit = $_POST['kdunit'];
                         
 
-                        $query = mysqli_query($konek, "SELECT S.kdsatker, S.nmsatker, S.kdunit, S.kdaktif, sum(D.jml_setoran) AS realisasi FROM r_satker as S LEFT JOIN r_unit AS U on U.kdunit = S.kdunit LEFT JOIN d_simponi AS D on D.kdsatker = S.kdsatker WHERE S.kdaktif = 1 AND S.kdunit = '$kdunit' GROUP BY S.kdsatker") or die(mysqli_error($konek));
+                        $query = mysqli_query($konek, "SELECT S.kdsatker, S.nmsatker, S.kdunit, S.kdaktif, sum(D.jml_setoran) AS realisasi FROM d_simponi AS D LEFT JOIN r_satker AS S ON S.kdsatker = D.kdsatker LEFT JOIN r_unit AS U on U.kdunit = S.kdunit WHERE S.kdaktif = 1 AND S.kdunit = '$kdunit' GROUP BY S.kdsatker") or die(mysqli_error($konek));
 
 
                                 if(mysqli_num_rows($query) == 0){
@@ -163,5 +165,6 @@
             
 		</table>
 	</div>
-    </div>  
+</div>
+</div>
 </div>

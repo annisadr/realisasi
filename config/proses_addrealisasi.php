@@ -22,7 +22,7 @@
  $data=mysqli_query($konek,$input) or die (mysqli_error($konek));
 
  if($data){
-  echo "<h1><strong><center>Data Realisasi PNBP Sudah ditambahkan</h1>";
+  echo "<br><br><br><h1><strong><center><i>Data Realisasi PNBP Sudah ditambahkan</h1>";
   echo '<META HTTP-EQUIV="REFRESH" CONTENT = "1; URL=../admin/index.php?page=realisasi">'; 
  }
 

@@ -177,6 +177,14 @@ $data    = mysqli_fetch_array($hasil);
       </div>
     </div>
 
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="tanggal">Tanggal</label>
+      <label class="control-label col-sm-1">:</label>
+      <div class="col-sm-3">
+        <input type="date" class="form-control" id="tanggal" name="tanggal" placeholder="Tanggal" value="<?php echo $data['tanggal']; ?>">
+      </div>
+    </div>
+
     <!-- <div class="form-group">
       <label class="control-label col-sm-3" for="tanggal">Tanggal</label>
       <label class="control-label col-sm-1">:</label>

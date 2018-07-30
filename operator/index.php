@@ -166,7 +166,7 @@
       </ul> -->
       <ul class="nav navbar-nav">
         <li>
-          <a class="nva" style="color: #cccccc;">Halaman Operator</a>
+          <a class="nva" style="color: #cccccc; font-family: sans-serif;"><i>Halaman Operator</i></a>
         </li>
         <li>
           <a class="tfevaluasiisan" style="color: #cccccc;">|</a>
@@ -226,6 +226,8 @@
         include ('struktur.php');
         elseif ($page=='tf')
         include ('tugasfungsi.php');
+        elseif ($page=='lihattusi')
+        include ('lihat_tusi.php');
         elseif ($page=='lpnbp')
         include ('perunit2017.php');
         elseif ($page=='sekjen')
@@ -266,8 +268,8 @@
         include ('signupuser.php');
         elseif ($page=='tambahfaq')
         include ('tambahfaq.php');
-        elseif ($page=='editfaq')
-        include ('edit_faq.php');
+        elseif ($page=='erealisasi')
+        include ('edit_realisasi.php');
         elseif ($page=='realisasi')
         include ('realisasi.php'); //harusnya realisasipnbp.php
         elseif ($page=='persatker')

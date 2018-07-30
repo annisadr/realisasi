@@ -160,7 +160,7 @@
       </ul> -->
       <ul class="nav navbar-nav">
         <li>
-          <a style="color: #cccccc;">Halaman Admin</a>
+          <a style="color: #cccccc; font-family: sans-serif;"><i>Halaman Admin</i></a>
         </li>
         <li>
           <a style="color: #cccccc;">|</a>
@@ -187,8 +187,8 @@
           <ul style="font-size: 15px;">
             <li class="dropdown-content">
               <a href="index.php?page=realisasi">Realisasi PNBP</a>
-              <a href="index.php?page=lpnbp">Per - Unit</a>
               <a href="index.php?page=persatker">Per - Satuan Kerja</a>
+              <a href="index.php?page=lpnbp">Per - Unit</a>
             </li>
           </ul>
         </li>
@@ -227,7 +227,9 @@
         elseif ($page=='strukturor')
         include ('struktur.php');
         elseif ($page=='tf')
-        include ('tugasfungsi.php');
+        include ('tugasdanfungsi.php'); //harusnya tugasfungsi.php
+        elseif ($page=='etusi')
+        include ('edit_tusi.php');
         elseif ($page=='lpnbp')
         include ('perunit2017.php');
         elseif ($page=='sekjen')
@@ -273,7 +275,7 @@
         elseif ($page=='realisasi')
         include ('realisasi.php'); //ini harusnya realisasipnbp.php
         elseif ($page=='persatker')
-        include ('lpersatker.php');
+        include ('persatker.php'); //ini harusnya lpersatker.php
         elseif ($page=='tunit')
         include ('tambah_unit.php');
         elseif ($page=='trpnbp')

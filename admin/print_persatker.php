@@ -13,7 +13,7 @@
 
 <body onload="window.print()">
 
-	<?php
+	<!-- <?php
 
 		include '../config/koneksi.php';
 
@@ -25,23 +25,24 @@
 		$cek       = mysqli_query($konek, $query)or die(mysqli_error($konek));
 		$data      = mysqli_fetch_array($cek);
 
-	?>
+	?> -->
 
 	<div class="container">
+		<div align="LEFT">
+			<p>
+				<img class="center" src="../gambar/logo.png" height="100" style=" float: left; padding-right: 50px;">
+				<p style="padding-top: 20px;"><b style="font-size: 20px;">Kementerian Pekerjaan Umum dan Perumahan Rakyat<br>Biro Keuangan</b>
+				<br>Jl. Pattimura 20, Jakarta Selatan (12110)</p>
+			</p>
+		</div><br><br><br>
+		<h3 align="center">Laporan Realisasi PNBP Per - Satuan Kerja</h3><br>
         <table class="table table-bordered table-striped table-hover table-responsive" align="center" id="datatable">
-        	<div align="LEFT">
-        		<p>
-        			<img class="center" src="../gambar/logo.png" height="100" style=" float: left; padding-right: 50px;">
-        			<p style="padding-top: 20px;"><b style="font-size: 20px;">Kementerian Pekerjaan Umum dan Perumahan Rakyat<br>Biro Keuangan</b>
-        			<br>Jl. Pattimura 20, Jakarta Selatan (12110)</p>
-        		</p>
-        	</div>
         	<!-- <p align="right">Jakarta, <?php
 				date_default_timezone_set('Asia/Jakarta');
 				echo date("d M Y");
 				?>
-			</p> --><br><br><br>
-        	<h3 align="center">Laporan Realisasi PNBP Per - Satuan Kerja</h3><br>
+			</p> -->
+        	
         	<!-- <p>
         		TIPE LAPORAN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Laporan Realisasi PNBP Per - Unit
         	</p>
@@ -62,7 +63,7 @@
 				<?php
 					include '../config/koneksi.php';
 					$no_urut = 0;
-					$query = mysqli_query($konek, "SELECT S.kdsatker, S.nmsatker, S.kdunit, S.kdaktif, sum(D.jml_setoran) AS realisasi FROM r_satker as S LEFT JOIN r_unit AS U on U.kdunit = S.kdunit LEFT JOIN d_simponi AS D on D.kdsatker = S.kdsatker WHERE S.kdaktif = 1 AND S.kdunit = '$kdunit' GROUP BY S.kdsatker") or die(mysqli_error());
+					$query = mysqli_query($konek, "SELECT S.kdsatker, S.nmsatker, S.kdunit, S.kdaktif, sum(D.jml_setoran) AS realisasi FROM d_simponi AS D LEFT JOIN r_satker AS S ON S.kdsatker = D.kdsatker LEFT JOIN r_unit AS U on U.kdunit = S.kdunit WHERE S.kdaktif = 1 GROUP BY S.kdsatker") or die(mysqli_error());
 					if(mysqli_num_rows($query) == 0){
 						echo '<tr><td collspan="4" align="center">Tidak ada data!</td></tr>';
 					}
@@ -70,13 +71,13 @@
 						$no = 1;
 						while ($data = mysqli_fetch_array($query)) {
 							$no_urut++;
-							echo '<tr align="center">';
-								echo '<td><font size="2px">'.$no_urut.'</font></td>';
-                                    echo '<td><font size="2px">'.$data['kdsatker'].'</font></td>';
+							echo '<tr>';
+								echo '<td align="center"><font size="2px">'.$no_urut.'</font></td>';
+                                    echo '<td align="center"><font size="2px">'.$data['kdsatker'].'</font></td>';
                                     echo '<td><font size="2px">'.$data['nmsatker'].'</font></td>';
-                                    echo '<td><font size="2px">'.$data['kdunit'].'</font></td>';
-                                    echo '<td><font size="2px">'.$data['kdaktif'].'</font></td>';
-                                    echo '<td><font size="2px">'.$data['realisasi'].'</font></td>';
+                                    echo '<td align="center"><font size="2px">'.$data['kdunit'].'</font></td>';
+                                    echo '<td align="center"><font size="2px">'.$data['kdaktif'].'</font></td>';
+                                    echo '<td align="center"><font size="2px">'.$data['realisasi'].'</font></td>';
 							echo '</tr>';
 							$no++;
 						}

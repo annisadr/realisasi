@@ -5,13 +5,13 @@
         <h3><large>STRUKTUR ORGANISASI</large></h3><hr><br>
     </div><br>
 
-    <a href="#">
+    <!-- <a href="#">
       <span class="glyphicon glyphicon-edit"></span>
     </a>
     
     <a href="#">
       <span class="glyphicon glyphicon-print"></span>
-    </a>
+    </a> -->
   <center>
     <img src="../gambar/strukturbirokeuangan.png">
   </center>

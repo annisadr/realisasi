@@ -1,4 +1,4 @@
-<option selected="selected" value="">--Pilih Salah Satu--</option>
+<option selected="selected" value="">--Pilih Satuan Kerja--</option>
 <?php 
     include '../config/koneksi.php';
     

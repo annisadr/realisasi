@@ -31,7 +31,7 @@
 
     <div class="row">
     	<form class="form-horizontal" action="" method="POST">
-    		<div class="form-group">
+    		<!-- <div class="form-group">
                 <label class="control-label col-sm-3" for="select">Unit :</label>
                 <div class="col-sm-7">
                     <select class="form-control" id="unit" name="unit">
@@ -83,10 +83,10 @@
                         <input type="date" class="form-control input-md" id="tanggalakhir" name="tanggalakhir"/>
                     </a>
     			</div>
-    		</div>
+    		</div> -->
     		<div class="form-group">
     			<div class="col-sm-3" align="right">
-                    <a href="print_realnit.php&&kdunit=<?php echo $data['kdunit']; ?>">
+                    <a href="print_realnit.php?kdunit=<?php echo $kdunit ?>" target ="_blank">
                         <button type="button" class="btn btn-primary">Print</button>
                     </a>
                 </div>
@@ -98,7 +98,7 @@
 
     </div>
     
-    <div class="row">
+    <div class="container-fluid">
         <table class="table table-striped table-bordered table-hover table-responsive" id="datatable">
             <thead>
                 <tr style="font-size: 10px; text-align: center; background-color: #d9d9d9; border-color: black;">

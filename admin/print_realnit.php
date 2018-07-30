@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 
   error_reporting(0);
 
@@ -10,7 +10,7 @@
   $hasil   = mysqli_query($konek, $edit)or die(mysql_error());
   $data    = mysqli_fetch_array($hasil);
 
-?>
+?> -->
 
 <!DOCTYPE html>
 <html>
@@ -26,7 +26,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
-<!-- <body onload="window.print()"> -->
+<body onload="window.print()">
+
+    
 
 <div class="container">
         <table class="table table-bordered table-striped table-hover table-responsive" align="center">
@@ -68,6 +70,16 @@
 			<tbody>
 				<?php
 					include '../config/koneksi.php';
+
+                    error_reporting();
+
+                    $kdunit    = $_GET['kdunit'];
+
+                    $query     = "SELECT * FROM d_simponi WHERE kdunit='$kdunit'";
+                    $cek       = mysqli_query($konek, $query)or die(mysqli_error($konek));
+                    $data      = mysqli_fetch_array($cek);
+
+
 					$no_urut = 0;
 					$query = mysqli_query($konek, "SELECT U.kdunit, S.kdsatker, D.wbws, D.kode_klus, D.kode_billing, D.kode_bp, D.NTPN, D.ntbntp, D.kode_uf, D.jml_setoran, D.tanggal
                             FROM r_satker as S
@@ -81,19 +93,19 @@
 						$no = 1;
 						while ($data = mysqli_fetch_array($query)) {
 							$no_urut++;
-							echo '<tr align="center">';
-								echo '<td><font size="2px">'.$no_urut.'</font></td>';
-                                echo '<td><font size="1px">'.$data['kdunit'].'</font></td>';
-                                echo '<td><font size="1px">'.$data['kdsatker'].'</font></td>';
+							echo '<tr>';
+								echo '<td align="center"><font size="2px">'.$no_urut.'</font></td>';
+                                echo '<td align="center"><font size="1px">'.$data['kdunit'].'</font></td>';
+                                echo '<td align="center"><font size="1px">'.$data['kdsatker'].'</font></td>';
                                 echo '<td><font size="1px">'.$data['wbws'].'</font></td>';
-                                echo '<td><font size="1px">'.$data['kode_klus'].'</font></td>';
-                                echo '<td><font size="1px">'.$data['kode_billing'].'</font></td>';
-                                echo '<td><font size="1px">'.$data['kode_bp'].'</font></td>';
-                                echo '<td><font size="1px">'.$data['NTPN'].'</font></td>';
-                                echo '<td><font size="1px">'.$data['ntbntp'].'</font></td>';
-                                echo '<td><font size="1px">'.$data['kode_uf'].'</font></td>';
-                                echo '<td><font size="1px">'.$data['jml_setoran'].'</font></td>';
-                                echo '<td><font size="1px">'.$data['tanggal'].'</font></td>';
+                                echo '<td align="center"><font size="1px">'.$data['kode_klus'].'</font></td>';
+                                echo '<td align="center"><font size="1px">'.$data['kode_billing'].'</font></td>';
+                                echo '<td align="center"><font size="1px">'.$data['kode_bp'].'</font></td>';
+                                echo '<td align="center"><font size="1px">'.$data['NTPN'].'</font></td>';
+                                echo '<td align="center"><font size="1px">'.$data['ntbntp'].'</font></td>';
+                                echo '<td align="center"><font size="1px">'.$data['kode_uf'].'</font></td>';
+                                echo '<td align="center"><font size="1px">'.$data['jml_setoran'].'</font></td>';
+                                echo '<td align="center"><font size="1px">'.$data['tanggal'].'</font></td>';
 							echo '</tr>';
 							$no++;
 						}

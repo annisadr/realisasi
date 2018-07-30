@@ -63,13 +63,13 @@
 						$no = 1;
 						while ($data = mysqli_fetch_array($query)) {
 							$no_urut++;
-							echo '<tr align="center">';
-								echo '<td><font size="2px">'.$no_urut.'</font></td>';
-								echo '<td><font size="2px">'.$data['kdunit'].'</font></td>';
-								echo '<td><font size="2px">'.$data['baes1'].'</font></td>';
+							echo '<tr>';
+								echo '<td align="center"><font size="2px">'.$no_urut.'</font></td>';
+								echo '<td align="center"><font size="2px">'.$data['kdunit'].'</font></td>';
+								echo '<td align="center"><font size="2px">'.$data['baes1'].'</font></td>';
 								echo '<td><font size="2px"><a href = "#">'.$data['nmunit'].'</a></font></td>';
-								echo '<td><font size="2px">'.$data['kdaktif'].'</font></td>';
-								echo '<td><font size="2px">'.$data['realisasi'].'</font></td>';
+								echo '<td align="center"><font size="2px">'.$data['kdaktif'].'</font></td>';
+								echo '<td align="center"><font size="2px">'.$data['realisasi'].'</font></td>';
 							echo '</tr>';
 							$no++;
 						}

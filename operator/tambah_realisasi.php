@@ -35,7 +35,7 @@
 <script type="text/javascript" src="../jquery-3.2.1.min.js"></script>
 <div class="container">
 <div class="row">
-  <h2>Tambah Data Realisasi PNBP<hr></h2>
+  <h3>Tambah Data Realisasi PNBP<hr></h3>
   <h6>
     <a href="index.php?page=realisasi&&id_user=<?php echo $data1['id_user']; ?>&&kdunit=<?php echo $data['kdunit']; ?>">Realisasi PNBP</a> > Tambah
   </h6><br><br>
@@ -61,18 +61,22 @@
       <label class="control-label col-sm-2" for="wbws">Satuan Kerja</label>
       <label class="control-label col-sm-1">:</label>
       <div class="col-sm-4">
-        <select class="form-control" id="kdsatker" name="kdsatker">
-          <option selected="selected" value="">--Pilih Satuan Kerja--</option>
-              <?php
-          include '../config/koneksi.php';
-          $sel_prov="select * from r_satker where kdunit='$kdunit'";
-          $q=mysqli_query($konek,$sel_prov);
-          while($data_prov=mysqli_fetch_array($q)){
+        <select class="form-control" id="kdsatker" name="kdsatker" required>
+          <option selected="selected">--Pilih Satuan Kerja--</option>
+          <?php
+              $nmsatker = "SELECT S.kdsatker, S.nmsatker FROM r_unit AS U
+              LEFT JOIN r_satker AS S ON S.kdunit = U.kdunit WHERE S.kdunit = '$kdunit' AND S.kdaktif = 1 ORDER BY nmsatker";
+              $querynmsatker = mysqli_query($konek,$nmsatker);
+              while ($datanmsatker = mysqli_fetch_array($querynmsatker)) {
               ?>
-              <option value="<?php echo $data_prov["kdsatker"] ?>"><?php echo $data_prov["kdsatker"] ?> | <?php echo $data_prov["nmsatker"] ?></option>
+          <option value="<?php echo $datanmsatker['kdsatker'] ?>">
+              <?php echo $datanmsatker["kdsatker"] ?> | 
+              <?php echo $datanmsatker["nmsatker"] ?>
+          </option>
               <?php
-          }
-          ?>
+                  }
+              ?>
+                            
         </select>
       </div>
     </div>
