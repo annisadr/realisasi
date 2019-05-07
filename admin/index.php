@@ -23,6 +23,11 @@
   <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../dataTables/datatables.min.css">
   
+   <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+
   <style type="text/css">
     .dropbtn {
       cursor: pointer;
@@ -140,13 +145,54 @@
 </head>
 
 <body>
-
-  <div class="container-fluid" style="background-color:white;color:#fff;height:100px;">
-    <img src="../gambar/Biro_Keuangan.png" style="padding-top: 10px;">
+  <div class="container collapse navbar-collapse" style="background-color:white;color:#fff;height:100px;">
+    <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <td rowspan="2"><img src="../gambar/favicon.png" style="height: 50px;"></td>
+          <td>Mary</td>
+        </tr>
+        <tr>
+          <td>July</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="#">
+    <img src="../gambar/logo-unsada.jpg" style="padding-top: 10px; height: 90px;">
+  </a>
+  
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link 1</a>
+    </li><br>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link 2</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link 3</a>
+    </li>
+  </ul>
+  <br><br>
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link 1</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link 2</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link 3</a>
+    </li>
+  </ul>
+</nav>
+
 
   <nav class="navbar navbar-inverse bg-info" data-spy="affix" data-offset-top="197">
-  <div class="container-fluid">
+  <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
@@ -159,19 +205,14 @@
         <img src="gambar/Biro_Keuangan.png" style="height: 70px; padding-left: 20px; padding-top: 5px; position: fixed;">
       </ul> -->
       <ul class="nav navbar-nav">
-        <li>
-          <a style="color: #cccccc; font-family: sans-serif;"><i>Halaman Admin</i></a>
-        </li>
-        <li>
-          <a style="color: #cccccc;">|</a>
-        </li>
+        
 
         <li class="nv" id="myNavbar">
           <a href="index.php?page=index" class="tulisan">Dashboard</a>
         </li>
 
         <li class="dropdown nv"  id="myNavbar">
-          <a class="dropbtn">Profil</a>
+          <a class="dropbtn">Profil<i class='fas fa-angle-down'></i></a>
           
           <ul style="font-size: 15px;">
             <li class="dropdown-content">
@@ -339,6 +380,15 @@
   <script src="../dataTables/jQuery-3.3.1/jquery-3.3.1.min.js"></script>
   <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
   <script src="../dataTables/datatables.min.js"></script>
+
+  <!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
 
   <script type="text/javascript">
     $(document).ready(function(){

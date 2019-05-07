@@ -147,7 +147,7 @@
                 <label class="col-sm-4">Password</label>
                 <label class="col-sm-1">:</label>
                   <div class="col-sm-5">
-                      <input type="password" class="form-control" name="password" placeholder="password" required>
+                      <input type="password" class="form-control" name="password" placeholder="password"  required>
                   </div>
               </div>
               <div class="form-group">
